@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+    <title>Speak the Name/Call the Name by Indiana Bible College - Lyrica</title>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container- px-0">
+    <!-- Header Section -->
+    <div class="header">
+        <div class="header__title-search">
+            <h1>LYRICA</h1> 
+        </div>
+    </div>
+    
+    
+        <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item mx-5">
+                        <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown mx-5">
+                        <a class="nav-link dropdown-toggle" href="#Genres" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            GENRES
+                        </a>
+                        <ul class="dropdown-menu navbar__dropdown--content" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="GENREJPop.html">J-pop</a></li>
+                            <li><a class="dropdown-item" href="GENREPopRock.html">Pop Rock</a></li>
+                            <li><a class="dropdown-item" href="GENREPopMusic.html">Pop Music</a></li>
+                            <li><a class="dropdown-item" href="GENREAlternative.html">Alternative</a></li>
+                            <li><a class="dropdown-item" href="GENREPostHardcore.html">Post Hardcore</a></li>
+                            <li><a class="dropdown-item" href="GENRER&B.html">R&B</a></li>
+                            <li><a class="dropdown-item" href="GENRESoul.html">Soul</a></li>
+                            <li><a class="dropdown-item" href="GENREContemporary.html">Contemporary</a></li>
+                            <li><a class="dropdown-item" href="GENREGospel.html">Gospel</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="feedback.html">FEEDBACK</a>
+                    </li>
+                </ul>
+        
+                <form id="searchForm" class="d-flex">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <div id="liveSearchResults" class="live-search-results"></div>  
+            </div>
+        </div>
+    </nav>
+
+        <div class="song">
+            <div class="song__container">
+                <img class="song__thumbnail" src="https://th.bing.com/th/id/OIP.wverTkhTq734ap0iw-KfbwHaEL?rs=1&pid=ImgDetMain" alt="Song Thumbnail" class="song__thumbnail">
+                <div class="song__details">
+                    <p class="song__title">Speak the Name/Call the Name</p>
+                    <p class="song__singer">Indiana Bible College</p>
+                    <div class="song__genres">
+                        <a href="GENREGospel.html" class="song__genre">Gospel</a>
+                        <a href="GENREContemporary.html" class="song__genre">Contemporary</a>
+                    </div>
+                </div>
+            </div>
+            <div class="video__container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/rbkGo7q-DDo?si=qDsm3i_JvROqXfwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>        
+            </div>
+            <div class="lyrics">
+                <p id="lyricsText">
+                [Intro]<br>
+                The atmosphere is changing<br>
+                Nothing stays the same<br>
+                Heaven is waiting<br>
+                For the mention of the Name
+                <p class="hidden-lyrics">
+                The Spirit is moving<br>
+                Burning like a flame<br>
+                Healing the broken<br>
+                By the One we proclaim<br>
+
+                [Pre-Chorus]<br>
+                Raise it up, Fill the sky<br>
+                Chains will fall, Mountains move<br>
+                We lift Him high<br>
+
+                [Chorus 1]<br>
+                Speak the Name<br>
+                The Name above all other names<br>
+                Speak the Name<br>
+                The Name the wind and waves obey<br>
+                All of heaven's coming down<br>
+                Fill the earth with a sound, Of the Name<br>
+                The Name of Jesus<br>
+
+                [Verse 2]<br>
+                Gather all who wonder<br>
+                Hostages of shame<br>
+                Miracles unfolding<br>
+                At the mention of the name<br>
+                All darkness is fleeing<br>
+                Mercy raining down<br>
+                Healing waters flowing<br>
+                As our lips make the sound<br>
+
+                [Pre-Chorus 2]<br>
+                Raise it up, Fill the sky<br>
+                Chains will fall, Mountains move<br>
+                We lift Him high<br>
+
+                [Chorus 1]<br>
+                Speak the Name<br>
+                The Name above all other names<br>
+                Speak the Name<br>
+                The Name the wind and waves obey<br>
+                All of heaven's coming down<br>
+                Fill the earth with a sound, Of the Name<br>
+                The Name of Jesus<br>
+                Speak the Name, The Name of Jesus<br>
+
+                [Bridge]<br>
+                Strongholds are broken<br>
+                I've been made free<br>
+                I am forgiven<br>
+                Fear has to leave<br>
+                Strongholds are broken<br>
+                I've been made free<br>
+                I am forgiven<br>
+                Fear has to leave<br>
+
+                Your Name is healing<br>
+                Your Name is power<br>
+                Your Name is holy<br>
+                My strong, strong tower<br>
+                Wonderful Name<br>
+                Glorious Name<br>
+                Powerful Name<br>
+
+                [Chorus 2]<br>
+                Call the name of Jesus<br>
+                He is our healer<br>
+                Call the name of Jesus<br>
+                He is our provider<br>
+                Call the name of Jesus<br>
+                He is our protector<br>
+                Call the name of Jesus<br>
+                He is our deliverer<br>
+
+                [Bridge 2]<br>
+                There's no name that is greater<br>
+                That is stronger than our saviour<br>
+                </p>
+                <button id="showMoreBtn" onclick="toggleLyrics()">Show More</button>
+            </div>
+    </div>
+    <button onclick="backToTop()" id="backToTopBtn">Back to Top</button>
+
+    <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__section footer__section--left">
+            <h3 class="footer__heading footer__heading--brand">LYRICA</h3>
+            <p class="footer__text">&copy; 2024 Lyrica. All Rights Reserved.</p>
+        </div>
+        
+        <div class="footer__section footer__section--center">
+            <ul class="footer__nav">
+                <li class="footer__nav-item"><a href="#" id="contactLink" class="footer__nav-link">Contact</a></li>
+                <li class="footer__nav-item"><a href="#" class="footer__nav-link">Privacy Policy</a></li>
+                <li class="footer__nav-item"><a href="#" class="footer__nav-link">Terms of Service</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer__section footer__section--right">
+            <ul class="footer__social">
+                <li class="footer__social-item"><a href="#" class="footer__social-link"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/facebook-app-round-white-icon.png" alt="Facebook"></a></li>
+                <li class="footer__social-item"><a href="#" class="footer__social-link"><img src="https://clipart-library.com/new_gallery/58-580603_twitter-icon-white-transparent-transparent-background-twitter-logo.png" alt="Twitter"></a></li>
+                <li class="footer__social-item"><a href="#" class="footer__social-link"><img src="https://img.icons8.com/win8/200/FFFFFF/instagram-new.png" alt="Instagram"></a></li>
+                <li class="footer__social-item"><a href="#" class="footer__social-link"><img src="https://ytpr.co.ke/wp-content/uploads/2020/06/linkedin-icon-png-transparent-background-8.png" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal Container -->
+<div id="modal-container"></div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
