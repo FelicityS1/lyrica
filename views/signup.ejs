@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>SignUp - Lyrica</title>
+    <link rel="stylesheet" href="logins.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container- px-0">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header__title-search">
+                <h1>LYRICA</h1>
+            </div>
+        </div>
+
+    <div class="form-container">
+        <h2>SignUp</h2>
+        <form action="/signup" method="post">
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="submit-btn">SignUp</button>
+        </form>
+        <p>Already have an account? <a href="/login">Log In</a></p>
+    </div>
+    </div>
+    </body>
+</body>
+</html>

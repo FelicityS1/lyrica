@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrica - Lyrics Made Easy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container- px-0">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header__title-search">
+                <h1>LYRICA</h1>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item mx-5">
+                            <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown mx-5">
+                            <a class="nav-link dropdown-toggle" href="#Genres" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                GENRES
+                            </a>
+                            <ul class="dropdown-menu navbar__dropdown--content"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="GENREJPop.html">J-pop</a></li>
+                                <li><a class="dropdown-item" href="GENREPopRock.html">Pop Rock</a></li>
+                                <li><a class="dropdown-item" href="GENREPopMusic.html">Pop Music</a></li>
+                                <li><a class="dropdown-item" href="GENREAlternative.html">Alternative</a></li>
+                                <li><a class="dropdown-item" href="GENREPostHardcore.html">Post Hardcore</a></li>
+                                <li><a class="dropdown-item" href="GENRER&B.html">R&B</a></li>
+                                <li><a class="dropdown-item" href="GENRESoul.html">Soul</a></li>
+                                <li><a class="dropdown-item" href="GENREContemporary.html">Contemporary</a></li>
+                                <li><a class="dropdown-item" href="GENREGospel.html">Gospel</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="about.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="feedback.html">FEEDBACK</a>
+                        </li>
+                    </ul>
+
+                    <form id="searchForm" class="d-flex">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                    <div id="liveSearchResults" class="live-search-results"></div>                    
+                    
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content section -->
+        <div class="content">
+            <h1>TOP SONGS</h1>
+            <div class="separator"></div>
+
+            <!-- Table of top songs -->
+            <div class="table__container table-responsive">
+                <table class="table table-hover table-bordered table-custom">
+                    <thead class="thead-light">
+                        <tr class="table__row">
+                            <th class="table__header">Rank</th>
+                            <th class="table__header"></th> <!-- Empty header for thumbnail column -->
+                            <th class="table__header">Song Title</th>
+                            <th class="table__header">Artist</th>
+                            <th class="table__header">Views</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Sample content rows -->
+                        <tr class="table__row">
+                            <td class="table__cell">1</td>
+                            <td class="table__cell"><img
+                                    src="https://emomiu.jp/wp/wp-content/uploads/2022/08/dish_replay1.jpg"
+                                    alt="Neko (Cat)" class="thumbnail"></td>
+                            <td class="table__cell table__cell--song-title"><a href="neko.html"
+                                    class="content__link">Neko (Cat)</a></td>
+                            <td class="table__cell table__cell--song-artist">DISH//</td>
+                            <td class="table__cell">3.2B</td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell">2</td>
+                            <td class="table__cell"><img
+                                    src="https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/0f/a5/98/0fa598d9-bf7c-bbba-e29c-b7fdc1270316/886447819074.jpg/1200x1200bf-60.jpg"
+                                    alt="Dancing With Your Ghost" class="thumbnail"></td>
+                            <td class="table__cell table__cell--song-title"><a href="DancingWithYourGhost.html"
+                                    class="content__link">Dancing With Your Ghost</a></td>
+                            <td class="table__cell table__cell--song-artist">Sasha Alex Sloan</td>
+                            <td class="table__cell">2.8B</td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell">3</td>
+                            <td class="table__cell"><img
+                                    src="https://www.game-ost.ru/static/covers_soundtracks/4/7/473845_97898.jpg"
+                                    alt="Vandalize" class="thumbnail"></td>
+                            <td class="table__cell table__cell--song-title"><a href="vandalize.html"
+                                    class="content__link">Vandalize</a></td>
+                            <td class="table__cell table__cell--song-artist">One OK Rock</td>
+                            <td class="table__cell">2.6B</td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell">4</td>
+                            <td class="table__cell"><img src="https://i.ytimg.com/vi/sARtzVKoHM0/maxresdefault.jpg"
+                                    alt="Out of Love" class="thumbnail"></td>
+                            <td class="table__cell table__cell--song-title"><a href="OutofLove.html"
+                                    class="content__link">Out of Love</a></td>
+                            <td class="table__cell table__cell--song-artist">Alessia Cara</td>
+                            <td class="table__cell">5.5B</td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell">5</td>
+                            <td class="table__cell"><img
+                                    src="https://th.bing.com/th/id/OIP.wverTkhTq734ap0iw-KfbwHaEL?rs=1&pid=ImgDetMain"
+                                    alt="Speak the Name/Call the Name" class="thumbnail"></td>
+                            <td class="table__cell table__cell--song-title"><a href="SpeaktheName.html"
+                                    class="content__link">Speak the Name/Call the Name</a></td>
+                            <td class="table__cell table__cell--song-artist">Indiana Bible College</td>
+                            <td class="table__cell">2.1B</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer__container">
+                <div class="footer__section footer__section--left">
+                    <h3 class="footer__heading footer__heading--brand">LYRICA</h3>
+                    <p class="footer__text">&copy; 2024 Lyrica. All Rights Reserved.</p>
+                </div>
+
+                <div class="footer__section footer__section--center">
+                    <ul class="footer__nav">
+                        <li class="footer__nav-item"><a href="#" id="contactLink" class="footer__nav-link">Contact</a>
+                        </li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Privacy Policy</a></li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section footer__section--right">
+                    <ul class="footer__social">
+                        <li class="footer__social-item"><a href="#" class="footer__social-link"><img
+                                    src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/facebook-app-round-white-icon.png"
+                                    alt="Facebook"></a></li>
+                        <li class="footer__social-item"><a href="#" class="footer__social-link"><img
+                                    src="https://clipart-library.com/new_gallery/58-580603_twitter-icon-white-transparent-transparent-background-twitter-logo.png"
+                                    alt="Twitter"></a></li>
+                        <li class="footer__social-item"><a href="#" class="footer__social-link"><img
+                                    src="https://img.icons8.com/win8/200/FFFFFF/instagram-new.png" alt="Instagram"></a>
+                        </li>
+                        <li class="footer__social-item"><a href="#" class="footer__social-link"><img
+                                    src="https://ytpr.co.ke/wp-content/uploads/2020/06/linkedin-icon-png-transparent-background-8.png"
+                                    alt="LinkedIn"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Modal Container -->
+        <div id="modal-container"></div>
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
