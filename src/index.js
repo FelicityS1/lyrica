@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const pasth = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
@@ -23,6 +24,10 @@ app.get('/login', (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.render("signup");
+});
+
+app.get('/login', (req, res) => {
+    res.render("login");  // Renders the login.ejs file
 });
 
 //register user
@@ -71,6 +76,7 @@ app.post("/login", async (req, res) => {
         res.send("Invalid Login Details");
     }
 });
+
 
 const port = 5000;
 app.listen(port, () => {

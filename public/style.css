@@ -39,12 +39,32 @@ p {
     right: 5%; 
 }
 
+
 .header__search-bar input {
     padding: 2%; 
     font-family: 'Poppins';
     font-size: 0.80vw; 
     border-radius: 10px; 
     border: 1px solid #ccc; 
+}
+
+.header__logout {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1vw;
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5vw 1vw;
+    transition: color 0.3s ease;
+}
+
+.header__logout:hover {
+    color: #ffcccc;
 }
 
 .navbar {
