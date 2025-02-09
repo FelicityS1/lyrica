@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const pasth = require("path");
+const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 
@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("login");
+    res.render("home");
 });
 
 app.get('/login', (req, res) => {
@@ -24,10 +24,6 @@ app.get('/login', (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.render("signup");
-});
-
-app.get('/login', (req, res) => {
-    res.render("login");  // Renders the login.ejs file
 });
 
 //register user

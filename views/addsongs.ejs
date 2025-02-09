@@ -1,17 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a New Song</title>
-    <link rel="stylesheet" href="style.css"> <!-- Make sure CSS is linked -->
+    <title>Add Songs - Lyrica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <header class="header">
-        <div class="header__title-search">
-            <h1>Song Lyrics Database</h1>
+    <div class="container- px-0">
+        
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header__title-search">
+                <h1>LYRICA</h1>
+            </div>
+            <a href="/login" class="header__logout">Logout</a>
         </div>
-    </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item mx-5">
+                            <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown mx-5">
+                            <a class="nav-link dropdown-toggle" href="#Genres" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                GENRES
+                            </a>
+                            <ul class="dropdown-menu navbar__dropdown--content"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="GENREJPop.html">J-pop</a></li>
+                                <li><a class="dropdown-item" href="GENREPopRock.html">Pop Rock</a></li>
+                                <li><a class="dropdown-item" href="GENREPopMusic.html">Pop Music</a></li>
+                                <li><a class="dropdown-item" href="GENREAlternative.html">Alternative</a></li>
+                                <li><a class="dropdown-item" href="GENREPostHardcore.html">Post Hardcore</a></li>
+                                <li><a class="dropdown-item" href="GENRER&B.html">R&B</a></li>
+                                <li><a class="dropdown-item" href="GENRESoul.html">Soul</a></li>
+                                <li><a class="dropdown-item" href="GENREContemporary.html">Contemporary</a></li>
+                                <li><a class="dropdown-item" href="GENREGospel.html">Gospel</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="about.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="feedback.html">FEEDBACK</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="addSongs">ADD SONGS</a>
+                        </li>
+                    </ul>
+
+                    <form id="searchForm" class="d-flex">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                    <div id="liveSearchResults" class="live-search-results"></div>                    
+                    
+                </div>
+            </div>
+        </nav>
 
     <!-- Add Song Form -->
     <div class="add-song-container">
