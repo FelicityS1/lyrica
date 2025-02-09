@@ -100,7 +100,7 @@ app.post("/addSongs", async (req, res) => {
         console.log("Song added:", newSong);
 
         // Send a response to the frontend that the song was added
-        res.render("loading", { message: "Song added successfully! Redirecting..." });
+        res.render("loading", { message: "Song added successfully! Redirecting to Home Screen..." });
 
     } catch (err) {
         console.error(err);
