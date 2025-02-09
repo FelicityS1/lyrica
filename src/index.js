@@ -4,6 +4,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 const songs = require("./songs");
+const { title } = require('process');
 
 const app = express();
 
@@ -82,6 +83,16 @@ app.post("/login", async (req, res) => {
     }
 });
 
+app.post("/addSongs", async (req, res) => {
+
+    const data = {
+        title: req.body.title,
+        artist: req.body.artist,
+        lyrics: req.body.lyrics,
+        youtube: req.body.youtube,
+    }
+
+});
 
 const port = 5000;
 app.listen(port, () => {

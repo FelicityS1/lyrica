@@ -11,7 +11,7 @@ connect.then(() => {
 });
 
 // Schema creation
-const LoginSchema = new mongoose.Schema({
+const SongsSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -31,6 +31,6 @@ const LoginSchema = new mongoose.Schema({
 });
 
 //collection Part
-const songs = new mongoose.model("songs", LoginSchema);
+const songs = new mongoose.model("songs", SongsSchema);
 
 module.exports = songs;
