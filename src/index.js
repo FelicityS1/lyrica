@@ -36,6 +36,10 @@ app.get("/home", (req, res) => {
     res.render("home");
 });
 
+app.get('/loading', (req, res) => {
+    res.render('login');
+});
+
 //register user
 app.post("/signup", async (req, res) => {
 
@@ -85,23 +89,25 @@ app.post("/login", async (req, res) => {
 
 app.post("/addSongs", async (req, res) => {
     try {
-        const newSong = new songs({ // Use the 'songs' model to create a new entry
+        const newSong = new songs({
             title: req.body.title,
             artist: req.body.artist,
             lyrics: req.body.lyrics,
             youtube: req.body.youtube,
         });
 
-        // Save to the database
         await newSong.save();
         console.log("Song added:", newSong);
 
-        res.send("Song added successfully!"); // You can redirect to another page if needed
+        // Send a response to the frontend that the song was added
+        res.render("loading", { message: "Song added successfully! Redirecting..." });
+
     } catch (err) {
         console.error(err);
         res.status(500).send("Error adding song.");
     }
 });
+
 
 
 
