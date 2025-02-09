@@ -3,6 +3,7 @@ const session = require('express-session');
 const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
+const songs = require("./songs");
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("login");
 });
 
 app.get('/login', (req, res) => {
@@ -24,6 +25,14 @@ app.get('/login', (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.render("signup");
+});
+
+app.get("/addSongs", (req, res) => {
+    res.render("addSongs"); // Render addSongs.ejs
+});
+
+app.get("/home", (req, res) => {
+    res.render("home");
 });
 
 //register user
