@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Song</title>
+    <link rel="stylesheet" href="style.css"> <!-- Make sure CSS is linked -->
+</head>
+<body>
+    <header class="header">
+        <div class="header__title-search">
+            <h1>Song Lyrics Database</h1>
+        </div>
+    </header>
+
+    <!-- Add Song Form -->
+    <div class="add-song-container">
+        <h2>Add a New Song</h2>
+        <form action="/songs/add" method="POST" class="add-song-form">
+            <div class="form-group">
+                <label for="title">Song Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" name="artist" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lyrics">Lyrics:</label>
+                <textarea id="lyrics" name="lyrics" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="youtube">YouTube Link:</label>
+                <input type="url" id="youtube" name="youtube" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Add Song</button>
+        </form>
+    </div>
+</body>
+</html>
