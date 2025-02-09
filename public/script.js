@@ -193,3 +193,4 @@ document.addEventListener("click", function (event) {
         resultsContainer.style.display = 'none';
     }
 });
+
