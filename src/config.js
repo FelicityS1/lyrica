@@ -1,20 +1,14 @@
-require("dotenv").config(); // Load environment variables
+const { name } = require("ejs");
 const mongoose = require("mongoose");
+const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/");
 
-const mongoURI = process.env.MONGO_URI; // Get the URI from .env
-
-const connect = mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-// Check database connection
+//check database connection
 connect.then(() => {
-    console.log("Database connected successfully to MongoDB Atlas");
-}).catch((err) => {
-    console.error("Database connection failed", err);
+    console.log("Database connected Successfully");
+})
+.catch(() => {
+    console.log("Database connection failed");
 });
-
 // Schema creation
 const LoginSchema = new mongoose.Schema({
     name: {
@@ -31,3 +25,4 @@ const LoginSchema = new mongoose.Schema({
 const collection = mongoose.model("users", LoginSchema);
 
 module.exports = collection;
+ 
