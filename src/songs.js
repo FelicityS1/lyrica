@@ -9,7 +9,8 @@ connect.then(() => {
 .catch(() => {
     console.log("Database connection failed");
 });
-// Define Songs Schema
+
+// Schema creation
 const SongsSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -29,7 +30,7 @@ const SongsSchema = new mongoose.Schema({
     }
 });
 
-// Create collection named "songs" in LyricaDB
-const Song = mongoose.model("songs", SongsSchema);
+//collection Part
+const songs = new mongoose.model("songs", SongsSchema);
 
-module.exports = Song;
+module.exports = songs;
