@@ -1,16 +1,14 @@
+const { name } = require("ejs");
 const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables
+const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB");
 
-// Connect to MongoDB Atlas and specify the database "LyricaDB"
-mongoose.connect(process.env.MONGO_URI || "mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("✅ Database connected successfully to LyricaDB");
-}).catch((err) => {
-    console.error("❌ Database connection failed:", err);
+//check database connection
+connect.then(() => {
+    console.log("Database connected Successfully");
+})
+.catch(() => {
+    console.log("Database connection failed");
 });
-
 // Define Songs Schema
 const SongsSchema = new mongoose.Schema({
     title: {
