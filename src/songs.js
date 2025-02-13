@@ -1,6 +1,6 @@
 const { name } = require("ejs");
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/");
+const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB");
 
 //check database connection
 connect.then(() => {
