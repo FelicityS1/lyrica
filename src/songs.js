@@ -1,16 +1,17 @@
-const { name } = require("ejs");
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB");
+require("dotenv").config(); // Load environment variables
 
-//check database connection
-connect.then(() => {
-    console.log("Database connected Successfully");
-})
-.catch(() => {
-    console.log("Database connection failed");
+// Connect to MongoDB Atlas and specify the database "LyricaDB"
+mongoose.connect(process.env.MONGO_URI || "mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("✅ Database connected successfully to LyricaDB");
+}).catch((err) => {
+    console.error("❌ Database connection failed:", err);
 });
 
-// Schema creation
+// Define Songs Schema
 const SongsSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -30,7 +31,7 @@ const SongsSchema = new mongoose.Schema({
     }
 });
 
-//collection Part
-const songs = new mongoose.model("songs", SongsSchema);
+// Create collection named "songs" in LyricaDB
+const Song = mongoose.model("songs", SongsSchema);
 
-module.exports = songs;
+module.exports = Song;
