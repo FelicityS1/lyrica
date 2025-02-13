@@ -29,7 +29,12 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/addSongs", (req, res) => {
-    res.render("addSongs"); // Render addSongs.ejs
+    try {
+        res.render("addSongs"); // Ensure this file exists in the 'views' folder
+    } catch (error) {
+        console.error("Error rendering addSongs.ejs:", error);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 app.get("/home", (req, res) => {
