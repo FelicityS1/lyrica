@@ -28,8 +28,8 @@ app.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-app.get("/addSongs", (req, res) => {
-    res.render("addSongs"); // Render addSongs.ejs
+app.get("/addsongs", (req, res) => {
+    res.render("addsongs"); // Render addSongs.ejs
 });
 
 app.get("/home", (req, res) => {
@@ -88,7 +88,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.post("/addSongs", async (req, res) => {
+app.post("/addsongs", async (req, res) => {
     try {
         const newSong = new songs({
             title: req.body.title,
