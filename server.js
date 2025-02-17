@@ -31,7 +31,7 @@ app.get("/home", (req, res) => {
     res.render("home");
 });
 
-app.get('/musicfeed', (req, res) => {
+app.get("/musicfeed", (req, res) => {
   res.render("musicfeed");
 });
 
