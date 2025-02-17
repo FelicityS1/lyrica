@@ -41,7 +41,7 @@
     <!-- Toast Notification & Form Submission Script -->
     <script>
         document.getElementById("signupForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Prevent form from reloading
+            event.preventDefault(); // Prevent form from reloading the page
     
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
@@ -58,27 +58,29 @@
                 Swal.fire({
                     position: "center",
                     icon: result.success ? "success" : "error",
-                    title: result.success ? "User successfully created!" : result.message,
-                    timer: 2000,
+                    title: result.success ? "User Created" : result.message,
                     showConfirmButton: false,
-                    width: "280px", // **Smaller and rectangular**
+                    timer: 2000,
+                    width: "200px", // **Smaller size**
+                    padding: "10px", // **Compact padding**
+                    backdrop: "rgba(0, 0, 0, 0.3)", // **Keeps focus on popup without moving the form**
                     customClass: {
-                        popup: "small-toast-popup" // Custom styling
+                        popup: "small-toast-popup"
                     }
                 }).then(() => {
-                    if (result.success) {
-                        window.location.href = "/login"; // Redirect after success
-                    }
+                    if (result.success) window.location.href = "/login"; // Redirect on success
                 });
     
             } catch (error) {
                 Swal.fire({
                     position: "center",
                     icon: "error",
-                    title: "Something went wrong.",
-                    timer: 2000,
+                    title: "Something went wrong",
                     showConfirmButton: false,
-                    width: "280px", // **Same small size**
+                    timer: 2000,
+                    width: "200px", // **Smaller size**
+                    padding: "10px",
+                    backdrop: "rgba(0, 0, 0, 0.3)",
                     customClass: {
                         popup: "small-toast-popup"
                     }
@@ -86,17 +88,6 @@
             }
         });
     </script>
-    
-    <style>
-        /* Make the popup smaller and rectangular */
-        .small-toast-popup {
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
-            padding: 12px; /* Tighter spacing */
-        }
-    </style>
-    
-    
     
 </body>
 </html>

@@ -98,7 +98,7 @@ h2 {
 }
 
 .small-toast-popup {
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
-    padding: 12px; /* Tighter spacing */
+    border-radius: 8px; /* Slightly rounded but rectangular */
+    height: 50px; /* Keep it horizontally stretched */
+    font-size: 14px; /* Make text smaller */
 }
