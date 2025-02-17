@@ -40,7 +40,9 @@ app.get('/loading', (req, res) => {
     res.render('login');
 });
 
-
+app.get('/musicfeed', (req, res) => {
+    res.render('musicfeed');
+  });
 //register user
 
 app.post("/signup", async (req, res) => {
@@ -108,17 +110,6 @@ app.post("/addsongs", async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send("Error adding song.");
-    }
-});
-
-app.get("/musicfeed", async (req, res) => {
-    try {
-        const allSongs = await songs.find(); // Fetch all songs from MongoDB
-
-        res.render("musicfeed", { songs: allSongs }); // Pass data to EJS
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error fetching songs.");
     }
 });
 

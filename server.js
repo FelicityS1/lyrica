@@ -32,8 +32,10 @@ app.get("/home", (req, res) => {
 });
 
 app.get('/musicfeed', (req, res) => {
-  res.render('musicfeed');
+  res.render("musicfeed");
 });
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
