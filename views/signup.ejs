@@ -57,43 +57,41 @@
     
                 if (result.success) {
                     Swal.fire({
-                        toast: true,
-                        position: "top-end",
+                        position: "center", // Popup appears in the center of the form
                         icon: "success",
                         title: "User successfully created!",
                         timer: 2000,
                         showConfirmButton: false,
-                        width: "300px", // Makes the toast smaller
+                        width: "320px", // Keeps the popup smaller
                         timerProgressBar: true
                     }).then(() => {
-                        window.location.href = "/login";
+                        window.location.href = "/login"; // Redirect after success
                     });
                 } else {
                     Swal.fire({
-                        toast: true,
-                        position: "top-end",
+                        position: "center", // Popup appears in the center
                         icon: "error",
                         title: result.message,
                         timer: 2000,
                         showConfirmButton: false,
-                        width: "300px", // Makes the toast smaller
+                        width: "320px", // Keeps the popup smaller
                         timerProgressBar: true
                     });
                 }
             } catch (error) {
                 Swal.fire({
-                    toast: true,
-                    position: "top-end",
+                    position: "center", // Popup appears in the center
                     icon: "error",
                     title: "Something went wrong.",
                     timer: 2000,
                     showConfirmButton: false,
-                    width: "300px", // Makes the toast smaller
+                    width: "320px", // Keeps the popup smaller
                     timerProgressBar: true
                 });
             }
         });
     </script>
+    
     
 </body>
 </html>
