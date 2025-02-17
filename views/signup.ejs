@@ -42,44 +42,58 @@
     <script>
         document.getElementById("signupForm").addEventListener("submit", async function(event) {
             event.preventDefault(); // Prevent form from reloading the page
-
+    
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-
+    
             try {
                 const response = await fetch("/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password })
                 });
-
+    
                 const result = await response.json();
-
+    
                 if (result.success) {
                     Swal.fire({
+                        toast: true,
+                        position: "top-end",
                         icon: "success",
                         title: "User successfully created!",
-                        text: "Redirecting to login page...",
                         timer: 2000,
-                        showConfirmButton: false
+                        showConfirmButton: false,
+                        width: "300px", // Makes the toast smaller
+                        timerProgressBar: true
                     }).then(() => {
                         window.location.href = "/login";
                     });
                 } else {
                     Swal.fire({
+                        toast: true,
+                        position: "top-end",
                         icon: "error",
-                        title: "Oops...",
-                        text: result.message
+                        title: result.message,
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px", // Makes the toast smaller
+                        timerProgressBar: true
                     });
                 }
             } catch (error) {
                 Swal.fire({
+                    toast: true,
+                    position: "top-end",
                     icon: "error",
-                    title: "Error",
-                    text: "Something went wrong. Please try again later."
+                    title: "Something went wrong.",
+                    timer: 2000,
+                    showConfirmButton: false,
+                    width: "300px", // Makes the toast smaller
+                    timerProgressBar: true
                 });
             }
         });
     </script>
+    
 </body>
 </html>
