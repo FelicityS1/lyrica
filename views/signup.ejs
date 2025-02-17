@@ -41,7 +41,7 @@
     <!-- Toast Notification & Form Submission Script -->
     <script>
         document.getElementById("signupForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Prevent form from reloading the page
+            event.preventDefault(); // Prevent form from reloading
     
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
@@ -55,42 +55,47 @@
     
                 const result = await response.json();
     
-                if (result.success) {
-                    Swal.fire({
-                        position: "center", // Popup appears in the center of the form
-                        icon: "success",
-                        title: "User successfully created!",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        width: "320px", // Keeps the popup smaller
-                        timerProgressBar: true
-                    }).then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: result.success ? "success" : "error",
+                    title: result.success ? "User successfully created!" : result.message,
+                    timer: 2000,
+                    showConfirmButton: false,
+                    width: "280px", // **Smaller and rectangular**
+                    customClass: {
+                        popup: "small-toast-popup" // Custom styling
+                    }
+                }).then(() => {
+                    if (result.success) {
                         window.location.href = "/login"; // Redirect after success
-                    });
-                } else {
-                    Swal.fire({
-                        position: "center", // Popup appears in the center
-                        icon: "error",
-                        title: result.message,
-                        timer: 2000,
-                        showConfirmButton: false,
-                        width: "320px", // Keeps the popup smaller
-                        timerProgressBar: true
-                    });
-                }
+                    }
+                });
+    
             } catch (error) {
                 Swal.fire({
-                    position: "center", // Popup appears in the center
+                    position: "center",
                     icon: "error",
                     title: "Something went wrong.",
                     timer: 2000,
                     showConfirmButton: false,
-                    width: "320px", // Keeps the popup smaller
-                    timerProgressBar: true
+                    width: "280px", // **Same small size**
+                    customClass: {
+                        popup: "small-toast-popup"
+                    }
                 });
             }
         });
     </script>
+    
+    <style>
+        /* Make the popup smaller and rectangular */
+        .small-toast-popup {
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            padding: 12px; /* Tighter spacing */
+        }
+    </style>
+    
     
     
 </body>
