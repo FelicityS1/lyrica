@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="logins.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Toast Notification -->
 </head>
+
 <body>
     <div class="container- px-0">
         <!-- Header Section -->
@@ -19,22 +21,65 @@
             </div>
         </div>
 
-    <div class="form-container">
-        <h2>SignUp</h2>
-        <form action="/signup" method="post">
-            <div class="form-group">
-                <label for="name">Username:</label>
-                <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="submit-btn">SignUp</button>
-        </form>
-        <p>Already have an account? <a href="/login">Log In</a></p>
+        <div class="form-container">
+            <h2>SignUp</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">SignUp</button>
+            </form>
+            <p>Already have an account? <a href="/login">Log In</a></p>
+        </div>
     </div>
-    </div>
-    </body>
+
+    <!-- Toast Notification & Form Submission Script -->
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "User successfully created!",
+                        text: "Redirecting to login page...",
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: result.message
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Something went wrong. Please try again later."
+                });
+            }
+        });
+    </script>
 </body>
 </html>

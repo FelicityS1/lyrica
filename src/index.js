@@ -41,32 +41,33 @@ app.get('/loading', (req, res) => {
 });
 
 //register user
+
 app.post("/signup", async (req, res) => {
+    const { username, password } = req.body;
 
-    const data = {
-        name: req.body.username,
-        password: req.body.password
-    }
+    try {
+        // Check if user already exists
+        const existingUser = await collection.findOne({ name: username });
+        if (existingUser) {
+            return res.json({ success: false, message: "User already exists! Please choose a different username." });
+        }
 
-    // check if user already exists in database
-    const existingUser = await collection.findOne({name: data.name});
-
-    if(existingUser) {
-        res.send("User already exists! Please choose a different username.");
-    }else {
-        // hash password using bcrypt
+        // Hash password using bcrypt
         const saltRounds = 10; 
-        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        data.password = hashedPassword;
+        const newUser = new collection({ name: username, password: hashedPassword });
+        await newUser.save();
 
+        return res.json({ success: true, message: "User successfully created!" });
 
-        const userdata = await collection.insertMany(data);
-        console.log(userdata);
-        res.render("loginloading", { message: "User Added. Redirecting to LoginPage..." });
+    } catch (error) {
+        console.error(error);
+        return res.json({ success: false, message: "Server error. Please try again later." });
     }
-
 });
+
+
 
 // User Login
 app.post("/login", async (req, res) => {
