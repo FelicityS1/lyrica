@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 app.get('/', (req, res) => {
-  res.render('index'); // Render index.ejs for the homepage
+  res.render('login'); // Render index.ejs for the homepage
 });
 
 app.get('/login', (req, res) => {

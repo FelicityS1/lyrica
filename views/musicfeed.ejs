@@ -79,35 +79,34 @@
                     
                 </div>
             </div>
-        </nav>
 
-    <!-- Add Song Form -->
-    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-        <div class="add-song-container">
-            <h2>ADD A SONG</h2>
-            <form action="/addsongs" method="post" class="add-song-form">
-                <div class="form-group">
-                    <label for="title">Song Title:</label>
-                    <input type="text" id="title" name="title" required>
+    <div class="container">
+        <h2>Music Feed</h2>
+        <div class="row">
+            <% songs.forEach(song => { %>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><%= song.title %> - <%= song.artist %></h5>
+
+                            <!-- Convert YouTube link to embedded format -->
+                            <% if (song.youtube.includes("watch?v=")) { %>
+                                <% var embedUrl = song.youtube.replace("watch?v=", "embed/"); %>
+                            <% } else if (song.youtube.includes("youtu.be/")) { %>
+                                <% var embedUrl = song.youtube.replace("youtu.be/", "youtube.com/embed/"); %>
+                            <% } else { %>
+                                <% var embedUrl = song.youtube; %>
+                            <% } %>
+
+                            <!-- Embed YouTube Video -->
+                            <iframe width="100%" height="200" src="<%= embedUrl %>" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="artist">Artist:</label>
-                    <input type="text" id="artist" name="artist" required>
-                </div>
-                <div class="form-group">
-                    <label for="lyrics">Lyrics:</label>
-                    <textarea id="lyrics" name="lyrics" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="youtube">YouTube Link:</label>
-                    <input type="url" id="youtube" name="youtube" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Song</button>
-            </form>
+            <% }); %>
         </div>
     </div>
 
-    
         <!-- Footer Section -->
         <footer class="footer">
             <div class="footer__container">
