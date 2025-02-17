@@ -96,3 +96,12 @@ h2 {
 .submit-btn:hover {
     background: #B18FCF;
 }
+
+.separator {
+    width: 100%; 
+    height: 0.1vw; 
+    background-color: white; 
+    border-radius: 20px; 
+    margin: 20px auto; 
+    position: relative; 
+}
