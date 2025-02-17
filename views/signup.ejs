@@ -55,47 +55,46 @@
     
                 const result = await response.json();
     
-                Swal.fire({
-                    position: "center",
-                    icon: result.success ? "success" : "error",
-                    title: result.success ? "User Created" : result.message,
-                    showConfirmButton: false,
-                    timer: 2000,
-                    width: "200px", // **Smaller size**
-                    padding: "10px", // **Compact padding**
-                    backdrop: "rgba(0, 0, 0, 0.3)", // **Keeps focus on popup without moving the form**
-                    customClass: {
-                        popup: "small-toast-popup"
-                    }
-                }).then(() => {
-                    if (result.success) window.location.href = "/login"; // Redirect on success
-                });
-    
+                if (result.success) {
+                    Swal.fire({
+                        toast: true,
+                        position: "center",
+                        icon: "success",
+                        title: "User successfully created!",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px", // Makes the toast smaller
+                        timerProgressBar: true
+                    }).then(() => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    Swal.fire({
+                        toast: true,
+                        position: "center",
+                        icon: "error",
+                        title: result.message,
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px", // Makes the toast smaller
+                        timerProgressBar: true
+                    });
+                }
             } catch (error) {
                 Swal.fire({
-                    position: "center",
+                    toast: true,
+                    position: "center,
                     icon: "error",
-                    title: "Something went wrong",
-                    showConfirmButton: false,
+                    title: "Something went wrong.",
                     timer: 2000,
-                    width: "200px", // **Smaller size**
-                    padding: "10px",
-                    backdrop: "rgba(0, 0, 0, 0.3)",
-                    customClass: {
-                        popup: "small-toast-popup"
-                    }
+                    showConfirmButton: false,
+                    width: "300px", // Makes the toast smaller
+                    timerProgressBar: true
                 });
             }
         });
     </script>
-    <style>
-        /* Custom styling for a rectangular toast notification */
-        .small-toast-popup {
-            border-radius: 8px; /* Slightly rounded but rectangular */
-            height: 50px; /* Keep it horizontally stretched */
-            font-size: 11px; /* Make text smaller */
-        }
-    </style>
+    
     
 </body>
 </html>
