@@ -92,8 +92,8 @@
             <ul>
                 <% songs.forEach(song => { %>
                     <li class="musicfeed-item">
-                        <a href="/musicfeed/<%= song._id %>"> 
-                            <%= song.title %> - <%= song.artist %>
+                        <a href="/musicfeed/<%= songs._id %>"> 
+                            <%= songs.title %> - <%= songs.artist %>
                         </a>
                     </li>
                 <% }) %>
