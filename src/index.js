@@ -121,6 +121,18 @@ app.get("/musicfeed", async (req, res) => {
     }
 });
 
+app.get("/musicfeed/:id", async (req, res) => {
+    try {
+        const song = await songs.findById(req.params.id); // Find song by ID
+        if (!song) {
+            return res.status(404).send("Song not found");
+        }
+        res.render("songdetails", { song }); // Render song details page
+    } catch (error) {
+        console.error("Error fetching song:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 
 

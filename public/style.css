@@ -799,3 +799,35 @@ body {
 .musicfeed-container {
     margin-bottom: 50px;
 }
+
+/* Style for the song details page */
+.song-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Lyrics styling */
+.lyrics-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Video styling */
+.video-box {
+    margin-top: 20px;
+}
+
+/* Make video responsive */
+.video-box iframe {
+    width: 100%;
+    height: 315px;
+    border-radius: 10px;
+}
