@@ -799,25 +799,57 @@ body {
 .musicfeed-container {
     margin-bottom: 50px;
 }
-
+/* Song Details Page */
 .songdetails-container {
     max-width: 600px;
-    margin: auto;
+    margin: 50px auto;
     text-align: center;
     padding: 20px;
+    background: #222; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
+/* Song Title & Artist */
+.song-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00; /* Gold text */
+}
+
+.song-artist {
+    font-size: 18px;
+    color: #ccc; /* Light gray */
+    margin-bottom: 10px;
+}
+
+/* Lyrics Section */
 .lyrics-section {
-    background: #f4f4f4;
+    background: #333; /* Darker gray */
     padding: 15px;
     border-radius: 8px;
     margin-top: 10px;
 }
 
+.lyrics-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcc00; /* Gold */
+    margin-bottom: 5px;
+}
+
+/* YouTube Video */
 .youtube-section {
     margin-top: 20px;
 }
 
+.video-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Back Button */
 .back-button {
     display: inline-block;
     margin-top: 15px;

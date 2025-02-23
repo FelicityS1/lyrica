@@ -28,26 +28,26 @@
             <a href="/login" class="header__logout">Logout</a>
         </div>
 
-    <div class="songdetails-container">
-        <h1><%= song.title %></h1>
-        <h2>By <%= song.artist %></h2>
-
-        <div class="lyrics-section">
-            <h3>Lyrics:</h3>
-            <p><%= song.lyrics.replace(/\n/g, "<br>") %></p> 
+        <div class="songdetails-container">
+            <div class="song-title"><%= song.title %></div>
+            <div class="song-artist">By <%= song.artist %></div>
+    
+            <div class="lyrics-section">
+                <div class="lyrics-title">Lyrics:</div>
+                <p><%= song.lyrics.replace(/\n/g, "<br>") %></p>
+            </div>
+    
+            <div class="youtube-section">
+                <div class="video-title">Listen to the song:</div>
+                <iframe width="560" height="315" 
+                    src="<%= song.youtube.replace('watch?v=', 'embed/') %>" 
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+    
+            <a href="/musicfeed" class="back-button">Back to Song List</a>
         </div>
-
-        <div class="youtube-section">
-            <h3>Listen to the song:</h3>
-            <iframe width="560" height="315" 
-                src="<%= song.youtube.replace('watch?v=', 'embed/') %>" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <a href="/musicfeed" class="back-button">Back to Song List</a>
-    </div>
 
 </body>
 </html>
