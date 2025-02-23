@@ -83,7 +83,7 @@
                 </div>
             </div>
         </nav>
-
+        <!-- Music Section -->
         <div class="musicfeed-container">
             <h2>Available Songs</h2>
             
@@ -91,8 +91,8 @@
                 <% if (typeof songs !== "undefined" && songs.length > 0) { %>
                     <% songs.forEach(song => { %>
                         <li class="musicfeed-item">
-                            <a href="/musicfeed/<%= song._id %>">
-                                <%= song.title %> - <%= song.artist %>
+                            <a href="/musicfeed/<%= songs._id %>">
+                                <%= songs.title %> - <%= songs.artist %>
                             </a>
                         </li>
                     <% }) %>
@@ -100,7 +100,7 @@
                     <p class="musicfeed-empty">No songs have been submitted yet.</p>
                 <% } %>
             </div>
-            
+         </div>   
         
         <!-- Footer Section -->
         <footer class="footer">

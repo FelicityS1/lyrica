@@ -727,36 +727,75 @@ body {
 .add-song-form .submit-btn:hover {
     background: #B18FCF;
 }
-
+/* Music Section */
 .musicfeed-container {
     max-width: 800px;
-    margin: auto;
+    margin: 40px auto;
     padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
+/* Ensure the musicfeed-container does not overlap the footer */
+.musicfeed-container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.musicfeed-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Music List */
 .musicfeed-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .musicfeed-item {
-    margin: 5px 0;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+}
+
+.musicfeed-item:last-child {
+    border-bottom: none;
 }
 
 .musicfeed-item a {
     text-decoration: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
     color: #007bff;
-    font-weight: bold;
+    display: block;
+    transition: color 0.3s;
+}
+
+.musicfeed-item:hover {
+    background: #f9f9f9;
 }
 
 .musicfeed-item a:hover {
-    text-decoration: underline;
+    color: #0056b3;
 }
 
-.musicfeed-card {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
+.musicfeed-empty {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #888;
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure spacing before the footer */
+.musicfeed-container {
+    margin-bottom: 50px;
 }
