@@ -763,7 +763,6 @@ body {
 .musicfeed-item {
     padding: 15px;
     border-bottom: 1px solid #ddd;
-    transition: background 0.3s;
 }
 
 .musicfeed-item:last-child {
