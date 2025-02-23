@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Songs - Lyrica</title>
+    <title>Music Feed - Lyrica</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -71,7 +71,7 @@
                             <a class="nav-link" href="addsongs">ADD SONGS</a>
                         </li>
                         <li class="nav-item mx-5">
-                            <a class="nav-link" href="/musicfeed">MUSIC FEED</a>
+                            <a class="nav-link" href="musicfeed">MUSIC FEED</a>
                         </li>
                     </ul>
 
@@ -85,36 +85,22 @@
         </nav>
 
         <div class="musicfeed-container">
-            <div class="musicfeed-header">
-                <h2>Music Feed</h2>
-            </div>
-        
+            <h2>Available Songs</h2>
+            
             <div class="musicfeed-list">
-                <% if (songs.length > 0) { %>
+                <% if (typeof songs !== "undefined" && songs.length > 0) { %>
                     <% songs.forEach(song => { %>
-                        <div class="musicfeed-card">
-                            <div class="musicfeed-info">
-                                <h3><%= song.title %> - <%= song.artist %></h3>
-                            </div>
-        
-                            <div class="musicfeed-video">
-                                <iframe width="100%" height="315" 
-                                    src="https://www.youtube.com/embed/<%= song.youtube.split('v=')[1] %>"
-                                    frameborder="0" allowfullscreen>
-                                </iframe>
-                            </div>
-        
-                            <div class="musicfeed-lyrics">
-                                <p><%= song.lyrics %></p>
-                            </div>
-                        </div>
+                        <li class="musicfeed-item">
+                            <a href="/musicfeed/<%= song._id %>">
+                                <%= song.title %> - <%= song.artist %>
+                            </a>
+                        </li>
                     <% }) %>
                 <% } else { %>
                     <p class="musicfeed-empty">No songs have been submitted yet.</p>
                 <% } %>
             </div>
-        </div>
-        
+            
         
         <!-- Footer Section -->
         <footer class="footer">

@@ -727,114 +727,36 @@ body {
 .add-song-form .submit-btn:hover {
     background: #B18FCF;
 }
-.music-feed-container {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-}
 
-.music-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.music-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 900px;
-}
-
-.video-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.video-container iframe {
-    width: 100%;
-    max-width: 450px;
-    height: 250px;
-    border-radius: 10px;
-}
-
-.lyrics-container {
-    flex: 1;
-    text-align: left;
-    padding: 10px 20px;
-    overflow-y: auto;
-    max-height: 250px;
-}
-
-.lyrics-container h3 {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.lyrics-container p {
-    font-size: 1em;
-    white-space: pre-line;
-}
-
-/* Music Feed Page Styles */
 .musicfeed-container {
-    width: 90%;
     max-width: 800px;
     margin: auto;
     padding: 20px;
 }
 
-.musicfeed-header h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+.musicfeed-list {
+    list-style-type: none;
+    padding: 0;
 }
 
-.musicfeed-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.musicfeed-item {
+    margin: 5px 0;
+}
+
+.musicfeed-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.musicfeed-item a:hover {
+    text-decoration: underline;
 }
 
 .musicfeed-card {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.musicfeed-info h3 {
-    font-size: 20px;
-    color: #444;
-    margin-bottom: 10px;
-}
-
-.musicfeed-video iframe {
-    border-radius: 8px;
-}
-
-.musicfeed-lyrics {
     background: #f9f9f9;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #555;
-    white-space: pre-wrap; /* Keeps line breaks in lyrics */
-}
-
-.musicfeed-empty {
-    text-align: center;
-    font-size: 18px;
-    color: #888;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -115,15 +115,17 @@ app.post("/addsongs", async (req, res) => {
 
 app.get("/musicfeed", async (req, res) => {
     try {
-        const songs = await Song.find(); // Fetch all songs from MongoDB
-        console.log(songs); // Debugging: Check if songs are being retrieved
-        res.render("musicfeed", { songs }); // Pass data to EJS
-    } catch (err) {
-        console.error(err);
+        const songs = await Songs.find(); // Fetch songs from MongoDB
+        console.log("Fetched Songs:", songs); // Debugging: Check if songs are retrieved
+        res.render("musicfeed", { songs, selectedSong: null }); // Pass songs to EJS
+    } catch (error) {
+        console.error("Error fetching songs:", error);
         res.status(500).send("Error fetching songs");
     }
 });
 
+
+ 
 const port = 5000;
 app.listen(port, () => {
     console.log(`Server running on Port: ${port}`);
