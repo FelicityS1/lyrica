@@ -35,6 +35,9 @@ app.get("/home", (req, res) => {
     res.render("home");
 });
 
+app.get('/songdetails', (req, res) => {
+  res.render('songdetails');
+});
 
 app.get("/musicfeed", async (req, res) => {
   try {

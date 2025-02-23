@@ -11,12 +11,12 @@
         <h1><%= song.title %> - <%= song.artist %></h1>
         <div class="lyrics-box">
             <h2>Lyrics</h2>
-            <p><%= song.lyrics.replace(/\n/g, "<br>") %></p> 
+            <p><%= song.lyrics.replace(\n/g, "<br>") %></p> 
         </div>
         <div class="video-box">
             <h2>Watch the Music Video</h2>
             <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/<%= new URL(song.youtubeURL).searchParams.get('v') %>" 
+                src="https://www.youtube.com/embed/<%= new URL(song.youtube).searchParams.get('v') %>" 
                 frameborder="0" 
                 allowfullscreen>
             </iframe>
