@@ -116,12 +116,14 @@ app.post("/addsongs", async (req, res) => {
 app.get("/musicfeed", async (req, res) => {
     try {
         const songList = await songs.find(); // Fetch all songs from Atlas
+        console.log("Fetched Songs from MongoDB:", songList); // Debugging Log
         res.render("musicfeed", { songs: songList }); // Pass songs to EJS
     } catch (error) {
         console.error("Error fetching songs:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 
 

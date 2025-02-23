@@ -89,10 +89,10 @@
 
     <div class="musicfeed-list">
         <% if (typeof songs !== "undefined" && songs.length > 0) { %>
-            <ul> <!-- ✅ Added an unordered list -->
+            <ul>
                 <% songs.forEach(song => { %>
                     <li class="musicfeed-item">
-                        <a href="/musicfeed/<%= song._id %>"> <!-- ✅ Fixed 'songs._id' to 'song._id' -->
+                        <a href="/musicfeed/<%= song._id %>"> 
                             <%= song.title %> - <%= song.artist %>
                         </a>
                     </li>
