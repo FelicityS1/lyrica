@@ -763,6 +763,7 @@ body {
 .musicfeed-item {
     padding: 15px;
     border-bottom: 1px solid #ddd;
+
 }
 
 .musicfeed-item:last-child {
@@ -774,7 +775,7 @@ body {
     font-size: 18px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: #007bff;
+    color: #000000;
     display: block;
     transition: color 0.3s;
 }
@@ -784,7 +785,7 @@ body {
 }
 
 .musicfeed-item a:hover {
-    color: #0056b3;
+    color: #929292;
 }
 
 .musicfeed-empty {
