@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= song.title %> - <%= song.artist %></title>
-    <link rel="stylesheet" href="/styles.css"> <!-- Link your CSS -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 
         <div class="lyrics-section">
             <h3>Lyrics:</h3>
-            <p><%= song.lyrics.replace(/\n/g, "<br>") %></p> <!-- Show lyrics with line breaks -->
+            <p><%= song.lyrics.replace(/\n/g, "<br>") %></p> 
         </div>
 
         <div class="youtube-section">
