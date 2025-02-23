@@ -42,7 +42,7 @@ app.get('/loading', (req, res) => {
 
 app.get('/musicfeed', (req, res) => {
     res.render('musicfeed');
-  });
+});
 //register user
 
 app.post("/signup", async (req, res) => {
@@ -105,7 +105,7 @@ app.post("/addsongs", async (req, res) => {
         console.log("Song added:", newSong);
 
         // Send a response to the frontend that the song was added
-        res.render("loading", { message: "Song added successfully! Redirecting to Home Screen..." });
+        res.redirect("/musicfeed");
 
     } catch (err) {
         console.error(err);
@@ -113,6 +113,15 @@ app.post("/addsongs", async (req, res) => {
     }
 });
 
+app.get('/musicfeed', async (req, res) => {
+    try {
+        const songs = await Song.find(); // Fetch all songs from MongoDB
+        res.render('musicfeed', { songs }); // Pass the songs to the EJS file
+    } catch (err) {
+        console.error('Error fetching songs:', err);
+        res.status(500).send('Error fetching songs');
+    }
+});
 
 
 const port = 5000;

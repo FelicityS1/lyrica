@@ -27,13 +27,15 @@ app.get("/addsongs", (req, res) => {
     res.render("addsongs"); // Render addSongs.ejs
 });
 
+app.get('/musicfeed', (req, res) => {
+  res.render("musicfeed");
+});
+
 app.get("/home", (req, res) => {
     res.render("home");
 });
 
-app.get("/musicfeed", (req, res) => {
-  res.render("musicfeed");
-});
+
 
 
 // Start the server
