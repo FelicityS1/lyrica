@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= song.title %> - <%= song.artist %></title>
-    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="stylesheet" href="/styles.css"> <!-- Link your CSS -->
 </head>
 <body>
-    <div class="song-container">
-        <h1><%= song.title %> - <%= song.artist %></h1>
-        <div class="lyrics-box">
-            <h2>Lyrics</h2>
-            <p><%= song.lyrics.replace(\n/g, "<br>") %></p> 
+
+    <div class="songdetails-container">
+        <h1><%= song.title %></h1>
+        <h2>By <%= song.artist %></h2>
+
+        <div class="lyrics-section">
+            <h3>Lyrics:</h3>
+            <p><%= song.lyrics.replace(/\n/g, "<br>") %></p> <!-- Show lyrics with line breaks -->
         </div>
-        <div class="video-box">
-            <h2>Watch the Music Video</h2>
+
+        <div class="youtube-section">
+            <h3>Listen to the song:</h3>
             <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/<%= new URL(song.youtube).searchParams.get('v') %>" 
+                src="<%= song.youtube.replace('watch?v=', 'embed/') %>" 
                 frameborder="0" 
                 allowfullscreen>
             </iframe>
         </div>
-        <a href="/musicfeed">⬅ Back to Music List</a>
+
+        <a href="/musicfeed" class="back-button">Back to Song List</a>
     </div>
+
 </body>
 </html>

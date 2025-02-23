@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const collection = require("./config");
 const songs = require("./songs");
 const { title } = require('process');
+const { ObjectId } = mongoose.Types;
 
 const app = express();
 
@@ -121,18 +122,27 @@ app.get("/musicfeed", async (req, res) => {
     }
 });
 
+
 app.get("/musicfeed/:id", async (req, res) => {
     try {
-        const song = await songs.findById(req.params.id); // Find song by ID
+        // Ensure the ID is a valid ObjectId
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).send("Invalid song ID");
+        }
+
+        const song = await songs.findById(req.params.id).lean(); // Fetch song as plain JS object
+
         if (!song) {
             return res.status(404).send("Song not found");
         }
+
         res.render("songdetails", { song }); // Render song details page
     } catch (error) {
         console.error("Error fetching song:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 
 
