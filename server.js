@@ -36,7 +36,16 @@ app.get("/home", (req, res) => {
 });
 
 
-
+app.get("/musicfeed", async (req, res) => {
+  try {
+      const songs = await Song.find(); // Fetch all songs from MongoDB
+      console.log(songs); // Debugging: Check if songs are being retrieved
+      res.render("musicfeed", { songs }); // Pass data to EJS
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Error fetching songs");
+  }
+});
 
 // Start the server
 app.listen(port, () => {
