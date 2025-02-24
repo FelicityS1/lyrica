@@ -29,14 +29,16 @@
         </div>
 
         <div class="songdetails-container">
-            <div class="song-title"><%= song.title %></div>
-            <div class="song-artist">By <%= song.artist %></div>
-    
-            <div class="lyrics-section">
-                <div class="lyrics-title">Lyrics:</div>
-                <p><%= song.lyrics.replace(/\n/g, "<br>") %></p>
+            <div class="song-info">
+                <div class="song-title"><%= song.title %></div>
+                <div class="song-artist">By <%= song.artist %></div>
+        
+                <div class="lyrics-section">
+                    <div class="lyrics-title">Lyrics:</div>
+                    <p><%= song.lyrics.replace(/\n/g, "<br>") %></p>
+                </div>
             </div>
-    
+        
             <div class="youtube-section">
                 <div class="video-title">Listen to the song:</div>
                 <iframe width="560" height="315" 
@@ -45,9 +47,10 @@
                     allowfullscreen>
                 </iframe>
             </div>
-    
-            <a href="/musicfeed" class="back-button">Back to Song List</a>
         </div>
+        
+        <a href="/musicfeed" class="back-button">Back to Song List</a>
+    </div>        
 
 </body>
 </html>
