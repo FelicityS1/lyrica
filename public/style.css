@@ -800,82 +800,61 @@ body {
     margin-bottom: 50px;
 }
 
+/* Song Details Page */
 .songdetails-container {
-    display: flex;
-    flex-wrap: wrap; /* Ensures responsiveness */
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: black;
-    color: white;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
     padding: 20px;
-    gap: 30px;
+    background: #222 !important; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Left Side: Song Info */
-.song-info {
-    flex: 1;
-    max-width: 50%;
-    min-width: 300px; /* Prevents collapsing on smaller screens */
-}
-
+/* Song Title & Artist */
 .song-title {
     font-size: 24px;
     font-weight: bold;
-    color: #ffcc00;
+    color: #ffcc00; /* Gold text */
 }
 
 .song-artist {
     font-size: 18px;
-    color: #ccc;
+    color: #ccc; /* Light gray */
     margin-bottom: 10px;
 }
 
-/* Lyrics */
+/* Lyrics Section */
 .lyrics-section {
-    background: #333;
+    background: #333; /* Darker gray */
     padding: 15px;
     border-radius: 8px;
     margin-top: 10px;
     color: #fff;
-    white-space: pre-line;
-    margin-bottom: 20px; /* Added spacing */
 }
 
 .lyrics-title {
     font-size: 20px;
     font-weight: bold;
-    color: #ffcc00;
+    color: #ffcc00; /* Gold */
     margin-bottom: 5px;
 }
 
-/* Right Side: YouTube Video */
+/* YouTube Video */
 .youtube-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Aligns content properly */
-    min-width: 300px; /* Prevents it from becoming too small */
+    margin-top: 20px;
 }
 
 .video-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    text-align: center;
-}
-
-.youtube-section iframe {
-    width: 100%;
-    max-width: 560px;
-    height: 315px;
-    border-radius: 8px;
 }
 
 /* Back Button */
 .back-button {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px 15px;
     background: #007bff;
     color: white;
@@ -885,20 +864,4 @@ body {
 
 .back-button:hover {
     background: #0056b3;
-}
-
-/* Mobile Responsive Fix */
-@media (max-width: 768px) {
-    .songdetails-container {
-        flex-direction: column; /* Stack elements on smaller screens */
-        align-items: center;
-    }
-
-    .song-info, .youtube-section {
-        max-width: 100%;
-    }
-
-    .youtube-section iframe {
-        width: 90%; /* Ensures it fits well on smaller screens */
-    }
 }
