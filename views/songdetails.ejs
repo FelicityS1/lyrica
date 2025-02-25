@@ -29,28 +29,40 @@
         </div>
 
         <div class="songdetails-container">
+            
+            <!-- Left Side: Song Info & Lyrics -->
             <div class="song-info">
-                <div class="song-title"><%= song.title %></div>
-                <div class="song-artist">By <%= song.artist %></div>
-        
-                <div class="lyrics-section">
-                    <div class="lyrics-title">Lyrics:</div>
-                    <p><%= song.lyrics.replace(\n/g, "<br>") %></p>
-                </div>
+                <% if (song) { %> 
+                    <div class="song-title"><%= song.title %></div>
+                    <div class="song-artist">By <%= song.artist %></div>
+
+                    <div class="lyrics-section">
+                        <div class="lyrics-title">Lyrics:</div>
+                        <p><%= song.lyrics ? song.lyrics.replace(\n/g, "<br>") : "No lyrics available." %></p>
+                    </div>
+                <% } else { %>
+                    <p style="color: red;">Error: Song not found.</p>
+                <% } %>
             </div>
-        
+
+            <!-- Right Side: YouTube Video -->
             <div class="youtube-section">
-                <div class="video-title">Listen to the song:</div>
-                <iframe width="560" height="315" 
-                    src="<%= song.youtube.replace('watch?v=', 'embed/') %>" 
-                    frameborder="0" 
-                    allowfullscreen>
-                </iframe>
+                <% if (song && song.youtube) { %>
+                    <div class="video-title">Listen to the song:</div>
+                    <iframe width="560" height="315" 
+                        src="<%= song.youtube.replace('watch?v=', 'embed/') %>" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                <% } else { %>
+                    <p style="color: red;">No video available.</p>
+                <% } %>
             </div>
+
         </div>
-        
+
         <a href="/musicfeed" class="back-button">Back to Song List</a>
-    </div>        
+    </div>   
 
 </body>
 </html>
