@@ -803,6 +803,16 @@ body {
     margin-bottom: 50px;
 }
 
+.song-details {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+}
+
+.delete-form {
+    margin-left: 10px;
+}
 .delete-button {
     background-color: #dc3545;
     color: white;
