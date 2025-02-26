@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 
@@ -144,14 +144,23 @@ app.get("/musicfeed/:id", async (req, res) => {
     }
 });
 
-app.delete('/delete/:id', async (req, res) => {
+app.post("/delete/:id", async (req, res) => {
     try {
-        const song = req.params.id;
-        await songs.findByIdAndDelete(song);
-        res.status(200).json({ message: "Song deleted successfully" });
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).send("Invalid song ID");
+        }
+
+        const deletedSong = await songs.findByIdAndDelete(req.params.id);
+
+        if (!deletedSong) {
+            return res.status(404).send("Song not found");
+        }
+
+        console.log("Deleted song:", deletedSong);
+        res.redirect("/musicfeed"); // Redirect after deleting
     } catch (error) {
-        console.error('Error deleting song:', error);
-        res.status(500).json({ message: "Error deleting song" });
+        console.error("Error deleting song:", error);
+        res.status(500).send("Internal Server Error");
     }
 });
 

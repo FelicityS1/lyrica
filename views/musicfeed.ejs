@@ -88,15 +88,15 @@
 
             <div class="musicfeed-list">
                 <% if (typeof songs !== "undefined" && songs.length > 0) { %>
-                    <ul>
+                    <ul class="musicfeed-list">
                         <% songs.forEach(song => { %>
                             <li class="musicfeed-item">
-                                <a href="/musicfeed/<%= song.id %>">
-                                    <%= song.title %> - <%= song.artist %>
-                                </a>
-                                <form action="/delete/<%= song.id %>" method="POST" style="margin-left: 10px;">
-                                    <button type="submit" class="delete-button">Delete</button>
-                                </form>
+                                <div class="song-details">
+                                    <a href="/musicfeed/<%= song._id %>"><%= song.title %> - <%= song.artist %></a>
+                                    <form action="/delete/<%= song._id %>" method="POST" class="delete-form">
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </div>
                             </li>
                         <% }) %>
                     </ul>
