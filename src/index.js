@@ -131,7 +131,7 @@ app.get("/musicfeed/:id", async (req, res) => {
             return res.status(400).send("Invalid song ID");
         }
 
-        const song = await songs.findById(req.params.id).lean(); // Fetch song as plain JS object
+        const song = await songs.findById(req.params.id).lean();
 
         if (!song) {
             return res.status(404).send("Song not found");
@@ -144,6 +144,24 @@ app.get("/musicfeed/:id", async (req, res) => {
     }
 });
 
+app.delete("/musicfeed/:id", async (req, res) => {
+    try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).send("Invalid song ID");
+        }
+
+        const result = await songs.findByIdAndDelete(req.params.id);
+
+        if (!result) {
+            return res.status(404).send("Song not found");
+        }
+
+        res.status(200).send("Song deleted successfully");
+    } catch (error) {
+        console.error("Error deleting song:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 
 
