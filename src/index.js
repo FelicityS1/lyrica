@@ -144,17 +144,16 @@ app.get("/musicfeed/:id", async (req, res) => {
     }
 });
 
-app.post('/delete/:id', async (req, res) => {
+app.delete('/delete/:id', async (req, res) => {
     try {
         const songId = req.params.id;
-        await Song.findByIdAndDelete(songId);
-        res.redirect('/musicfeed'); 
+        await songs.findByIdAndDelete(songId);
+        res.status(200).json({ message: "Song deleted successfully" });
     } catch (error) {
         console.error('Error deleting song:', error);
-        res.status(500).send('Error deleting song');
+        res.status(500).json({ message: "Error deleting song" });
     }
 });
-
 
 
  
