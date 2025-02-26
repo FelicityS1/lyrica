@@ -679,6 +679,13 @@ body {
     
 }
 
+.add-song-container h2{
+font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
 /* Form Fields */
 .add-song-form {
     display: flex;
@@ -712,13 +719,13 @@ body {
 }
 
 /* Submit Button */
-.add-song-form .submit-btn {
+.add-song-form .song-button {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
-    color: white;
-    background: #FF69B4;
+    color: rgb(255, 255, 255);
+    background: #c54384;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -747,8 +754,8 @@ body {
 
 .musicfeed-container h2 {
     font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 600;
     color: #333;
     margin-bottom: 20px;
 }
@@ -814,8 +821,8 @@ body {
     margin-left: 10px;
 }
 .delete-button {
-    background-color: #dc3545;
-    color: white;
+    color: rgb(255, 255, 255);
+    background: #c54384;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -886,8 +893,8 @@ body {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 15px;
-    background: #007bff;
-    color: white;
+    color: rgb(255, 255, 255);
+    background: #c54384;
     text-decoration: none;
     border-radius: 5px;
 }
