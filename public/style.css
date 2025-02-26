@@ -761,10 +761,13 @@ body {
 }
 
 .musicfeed-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
     padding: 15px;
     border-bottom: 1px solid #ddd;
-
 }
+
 
 .musicfeed-item:last-child {
     border-bottom: none;
@@ -798,6 +801,23 @@ body {
 
 .musicfeed-container {
     margin-bottom: 50px;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; 
+}
+
+
+.delete-button:hover {
+    background-color: #b02a37;
 }
 
 /* Song Details Page */
@@ -866,17 +886,4 @@ body {
     background: #0056b3;
 }
 
-.delete-button {
-    background-color: #dc3545; 
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
 
-.delete-button:hover {
-    background-color: #b02a37;
-}
