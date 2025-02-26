@@ -146,8 +146,8 @@ app.get("/musicfeed/:id", async (req, res) => {
 
 app.delete('/delete/:id', async (req, res) => {
     try {
-        const songId = req.params.id;
-        await songs.findByIdAndDelete(songId);
+        const song = req.params.id;
+        await songs.findByIdAndDelete(song);
         res.status(200).json({ message: "Song deleted successfully" });
     } catch (error) {
         console.error('Error deleting song:', error);
