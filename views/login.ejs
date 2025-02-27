@@ -24,8 +24,8 @@
             <h2>Login</h2>
             <form id="loginForm" action="/login" method="post"> 
                 <div class="form-group">
-                    <label for="username">Username:</label> 
-                    <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
+                    <label for="name">Username:</label> 
+                    <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
@@ -41,7 +41,7 @@
     event.preventDefault(); // Prevent page reload
     console.log("Login form submitted");
 
-    const username = document.getElementById("username").value;
+    const username = document.getElementById("name").value;
     const password = document.getElementById("password").value;
     console.log("Username:", username, "Password:", password);
 

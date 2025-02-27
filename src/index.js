@@ -74,7 +74,7 @@ app.post("/signup", async (req, res) => {
 // User Login
 app.post("/login", async (req, res) => {
     try {
-        const check = await collection.findOne({ username: req.body.username }); // Ensure field name matches DB
+        const check = await collection.findOne({ name: req.body.name }); // Ensure field name matches DB
         if (!check) {
             return res.json({ success: false, message: "User not found." });
         }
