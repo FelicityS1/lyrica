@@ -37,66 +37,67 @@
         </div>
     
         <script>
-            document.getElementById("loginForm").addEventListener("submit", async function(event) {
-                event.preventDefault(); // Prevent page reload
-                console.log("Login form submitted");
-    
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-                console.log("Username:", username, "Password:", password);
-    
-                try {
-                    const response = await fetch("/login", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ username, password })
-                    });
-    
-                    console.log("Response Status:", response.status);
-    
-                    const result = await response.json();
-                    console.log("API Response:", result);
-    
-                    if (result.success) {
-                        Swal.fire({
-                            toast: true,
-                            position: "top-end",
-                            icon: "success",
-                            title: "Login successful!",
-                            timer: 2000,
-                            showConfirmButton: false,
-                            width: "300px",
-                            timerProgressBar: true
-                        }).then(() => {
-                            window.location.href = "/home";
-                        });
-                    } else {
-                        console.log("Login failed:", result.message);
-                        Swal.fire({
-                            toast: true,
-                            position: "top-end",
-                            icon: "error",
-                            title: "Invalid login details!",
-                            timer: 2000,
-                            showConfirmButton: false,
-                            width: "300px",
-                            timerProgressBar: true
-                        });
-                    }
-                } catch (error) {
-                    console.error("Fetch Error:", error);
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "error",
-                        title: "Something went wrong.",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        width: "300px",
-                        timerProgressBar: true
-                    });
-                }
+           document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent page reload
+    console.log("Login form submitted");
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    console.log("Username:", username, "Password:", password);
+
+    try {
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+
+        console.log("Response Status:", response.status);
+
+        const result = await response.json(); // Ensure JSON response parsing
+        console.log("API Response:", result);
+
+        if (result.success) {
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                icon: "success",
+                title: "Login successful!",
+                timer: 2000,
+                showConfirmButton: false,
+                width: "300px",
+                timerProgressBar: true
+            }).then(() => {
+                window.location.href = "/home";
             });
+        } else {
+            console.log("Login failed:", result.message);
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                icon: "error",
+                title: result.message, // Show the actual error message
+                timer: 2000,
+                showConfirmButton: false,
+                width: "300px",
+                timerProgressBar: true
+            });
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error);
+        Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "error",
+            title: "Something went wrong.",
+            timer: 2000,
+            showConfirmButton: false,
+            width: "300px",
+            timerProgressBar: true
+        });
+    }
+});
+
         </script>
     
 </body>

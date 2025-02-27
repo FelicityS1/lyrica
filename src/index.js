@@ -73,23 +73,24 @@ app.post("/signup", async (req, res) => {
 
 // User Login
 app.post("/login", async (req, res) => {
-    try{
-        const check = await collection.findOne({name: req.body.username});
-        if(!check) {
+    try {
+        const check = await collection.findOne({ username: req.body.username }); // Ensure field name matches DB
+        if (!check) {
             return res.json({ success: false, message: "User not found." });
         }
 
         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if(isPasswordMatch) {
-            res.render("home");
-
-        }else {
+        if (isPasswordMatch) {
+            return res.json({ success: true, message: "Login successful." }); // Respond with JSON
+        } else {
             return res.json({ success: false, message: "Invalid Password." });
         }
-    }catch{
-        res.send("Invalid Login Details");
+    } catch (error) {
+        console.error("Login Error:", error);
+        return res.status(500).json({ success: false, message: "Something went wrong." });
     }
 });
+
 
 app.post("/addsongs", async (req, res) => {
     try {
