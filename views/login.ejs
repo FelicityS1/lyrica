@@ -22,7 +22,8 @@
 
     <div class="form-container">
         <h2>Login</h2>
-        <form action="/login" method="post">
+        <form id="loginForm" action="/login" method="post">
+
             <div class="form-group">
                 <label for="name">Username:</label>
                 <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
@@ -63,7 +64,7 @@
                         width: "300px",
                         timerProgressBar: true
                     }).then(() => {
-                        window.location.href = "/dashboard"; // Redirect to dashboard or homepage
+                        window.location.href = "/home"; // Redirect to dashboard or homepage
                     });
                 } else {
                     Swal.fire({
