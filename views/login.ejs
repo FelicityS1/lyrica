@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="logins.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Toast Notification -->
 </head>
 <body>
     <div class="container- px-0">
@@ -34,7 +35,62 @@
         </form>
         <p>Don't have an account? <a href="/signup">Signup</a></p>
     </div>
-    </div>
-    </body>
+    
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent page reload
+    
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+    
+            try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+    
+                const result = await response.json();
+    
+                if (result.success) {
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successful!",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px",
+                        timerProgressBar: true
+                    }).then(() => {
+                        window.location.href = "/dashboard"; // Redirect to dashboard or homepage
+                    });
+                } else {
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "error",
+                        title: "Invalid login details!",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px",
+                        timerProgressBar: true
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    toast: true,
+                    position: "top-end",
+                    icon: "error",
+                    title: "Something went wrong.",
+                    timer: 2000,
+                    showConfirmButton: false,
+                    width: "300px",
+                    timerProgressBar: true
+                });
+            }
+        });
+    </script>
+    
 </body>
 </html>
