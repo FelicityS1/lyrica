@@ -20,78 +20,84 @@
             </div>
         </div>
 
-    <div class="form-container">
-        <h2>Login</h2>
-        <form id="loginForm" action="/login" method="post">
-
-            <div class="form-group">
-                <label for="name">Username:</label>
-                <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
-        <p>Don't have an account? <a href="/signup">Signup</a></p>
-    </div>
+        <div class="form-container">
+            <h2>Login</h2>
+            <form id="loginForm" action="/login" method="post"> 
+                <div class="form-group">
+                    <label for="username">Username:</label> 
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/signup">Signup</a></p>
+        </div>
     
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Prevent page reload
+        <script>
+            document.getElementById("loginForm").addEventListener("submit", async function(event) {
+                event.preventDefault(); // Prevent page reload
+                console.log("Login form submitted");
     
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                console.log("Username:", username, "Password:", password);
     
-            try {
-                const response = await fetch("/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ username, password })
-                });
-    
-                const result = await response.json();
-    
-                if (result.success) {
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "success",
-                        title: "Login successful!",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        width: "300px",
-                        timerProgressBar: true
-                    }).then(() => {
-                        window.location.href = "/home"; // Redirect to dashboard or homepage
+                try {
+                    const response = await fetch("/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username, password })
                     });
-                } else {
+    
+                    console.log("Response Status:", response.status);
+    
+                    const result = await response.json();
+                    console.log("API Response:", result);
+    
+                    if (result.success) {
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "success",
+                            title: "Login successful!",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            width: "300px",
+                            timerProgressBar: true
+                        }).then(() => {
+                            window.location.href = "/dashboard";
+                        });
+                    } else {
+                        console.log("Login failed:", result.message);
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "error",
+                            title: "Invalid login details!",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            width: "300px",
+                            timerProgressBar: true
+                        });
+                    }
+                } catch (error) {
+                    console.error("Fetch Error:", error);
                     Swal.fire({
                         toast: true,
                         position: "top-end",
                         icon: "error",
-                        title: "Invalid login details!",
+                        title: "Something went wrong.",
                         timer: 2000,
                         showConfirmButton: false,
                         width: "300px",
                         timerProgressBar: true
                     });
                 }
-            } catch (error) {
-                Swal.fire({
-                    toast: true,
-                    position: "top-end",
-                    icon: "error",
-                    title: "Something went wrong.",
-                    timer: 2000,
-                    showConfirmButton: false,
-                    width: "300px",
-                    timerProgressBar: true
-                });
-            }
-        });
-    </script>
+            });
+        </script>
     
 </body>
 </html>
