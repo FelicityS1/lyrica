@@ -75,6 +75,7 @@
                             <li class="musicfeed-item">
                                 <div class="song-details">
                                     <a href="/musicfeed/<%= song._id %>"><%= song.title %> - <%= song.artist %></a>
+                                </div>
                                     <div class="button-group">
                                         <a href="/update/<%= song._id %>" class="update-button">Update</a>
                                         <form action="/delete/<%= song._id %>" method="POST" class="delete-form">
@@ -82,7 +83,6 @@
                                         </form>
                                     </div>
                                     
-                                </div>
                             </li>
                         <% }) %>
                     </ul>
