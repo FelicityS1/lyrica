@@ -165,6 +165,21 @@ app.post("/delete/:id", async (req, res) => {
     }
 });
 
+app.get('/update/:id', async (req, res) => {
+    const songId = req.params.id;
+    const song = await songs.findById(songId);
+    if (!song) {
+        return res.status(404).send("Song not found");
+    }
+    res.render('update', { song });
+});
+
+app.post('/update/:id', async (req, res) => {
+    const { title, artist, youtube, lyrics } = req.body;
+    await songs.findByIdAndUpdate(req.params.id, { title, artist, youtube, lyrics });
+    res.redirect('/musicfeed');
+});
+
 
  
 const port = 5000;

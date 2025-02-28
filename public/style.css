@@ -817,6 +817,28 @@ font-family: 'Poppins', sans-serif;
     width: 100%;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.update-button {
+    color: white;
+    background: #007bff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; 
+}
+
+.update-button:hover {
+    background-color: #0056b3;
+}
+
 .delete-form {
     margin-left: 10px;
 }
