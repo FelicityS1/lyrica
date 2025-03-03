@@ -14,24 +14,26 @@ Lyrica is a web application designed to help users manage and browse song lyrics
 ## How to use
 https://lyrica-1.onrender.com/login
 
-1. Sign up for new users
+1. Sign up for new users.
 
 
-2. Homepage
-	Here you’ll see the top ranked songs
+2. Login using your created credentials. 
 
 
-3. About
+3. Home page
+
+4. About Page
+   	This is where you can find the overview of Lyrica and the purpose for its creation.
 
 
-4. 
+5. Feedback Page
 	Send feedback to the creators, it could be normal feedback, a bug report, or a suggestion for website improvement.
 
 
-5. Add Songs
+6. Add Songs
 	 to the website, you can input the title, artist, lyrics, and the youtube link for the reference. It would be automatically added to the website database.
 
 
-6. 
-	In the music feed tab you can view all the song list. You can update the song’s lyrics, and artists if there are any errors, you can also delete the song from the website by clicking on the delete button.
+7. Music Feed
+	In the music feed tab you can view the song list. You can update the song’s lyrics, and artists if there are any errors, you can also delete a song by clicking the delete button.
 
