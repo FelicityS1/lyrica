@@ -9,7 +9,7 @@ Lyrica is a web application designed to help users manage and browse song lyrics
 - EJS (Embedded JavaScript)
 - HTML, CSS
 - MongoDB (for database)
- 
+- Mongoose (for data modeling)
 
 ## How to use
 https://lyrica-1.onrender.com/login
