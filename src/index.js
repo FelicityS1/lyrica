@@ -1,7 +1,7 @@
 const express = require('express');
 require("dotenv").config();
 const session = require('express-session');
-const MongoStore = require('connect-mongo');  // MongoDB session storage
+const MongoStore = require('connect-mongo');  // ✅ Added for MongoDB session storage
 const passport = require('./passport');  // OAuth
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require("path");
@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-// MongoDB Session Storage
+// ✅ MongoDB Session Storage
 app.use(session({
     secret: process.env.SESSION_SECRET || "supersecret",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: process.env.MONGO_URI,
         collectionName: "sessions",
@@ -49,6 +49,7 @@ passport.use(new GoogleStrategy({
                 name: profile.displayName,
                 email: profile.emails[0].value
             });
+
             await user.save();
         }
 
@@ -63,18 +64,8 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (err) {
-        done(err, null);
-    }
-});
-
-// Middleware to store user session and make it available globally
-app.use((req, res, next) => {
-    res.locals.user = req.session.user || null; // Make user accessible in all EJS templates
-    next();
+    const user = await User.findById(id);
+    done(null, user);
 });
 
 // Routes
@@ -82,15 +73,8 @@ app.get("/", (req, res) => res.render("login"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => res.render("addsongs"));
+app.get("/home", (req, res) => res.render("home"));
 app.get("/loading", (req, res) => res.render("login"));
-
-// Home route - passing user info
-app.get("/home", (req, res) => {
-    console.log("Session User:", req.session.user); // Debugging
-
-    res.render("home", { user: req.session.user || null });
-});
-
 
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -100,7 +84,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/home'
 }));
 
-// Register User (Manual Signup)
+// Register User
 app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
 
@@ -114,8 +98,7 @@ app.post("/signup", async (req, res) => {
         const newUser = new User({ name: username, password: hashedPassword });
         await newUser.save();
 
-        req.session.user = newUser; // Store user in session
-        return res.redirect("/home");
+        return res.json({ success: true, message: "User successfully created!" });
     } catch (error) {
         console.error(error);
         return res.json({ success: false, message: "Server error. Please try again." });
@@ -129,21 +112,17 @@ app.post("/login", async (req, res) => {
         if (!check) return res.json({ success: false, message: "User not found." });
 
         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (!isPasswordMatch) return res.json({ success: false, message: "Invalid Password." });
-
-        req.session.user = { name: user.name, email: user.email };
-
-        console.log("User saved in session:", req.session.user);
-        res.redirect("/home");
+        return res.json({ success: isPasswordMatch, message: isPasswordMatch ? "Login successful." : "Invalid Password." });
     } catch (error) {
         console.error("Login Error:", error);
         return res.status(500).json({ success: false, message: "Something went wrong." });
     }
 });
 
-// Logout (Clear session)
+// Logout
 app.get("/logout", (req, res) => {
-    req.session.destroy(() => {
+    req.logout((err) => {
+        if (err) return next(err);
         res.redirect("/");
     });
 });
@@ -168,6 +147,45 @@ app.get("/musicfeed", async (req, res) => {
         console.error("Error fetching songs:", error);
         res.status(500).send("Internal Server Error");
     }
+});
+
+app.get("/musicfeed/:id", async (req, res) => {
+    try {
+        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
+
+        const song = await songs.findById(req.params.id).lean();
+        if (!song) return res.status(404).send("Song not found");
+
+        res.render("songdetails", { song });
+    } catch (error) {
+        console.error("Error fetching song:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/delete/:id", async (req, res) => {
+    try {
+        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
+
+        const deletedSong = await songs.findByIdAndDelete(req.params.id);
+        if (!deletedSong) return res.status(404).send("Song not found");
+
+        res.redirect("/musicfeed");
+    } catch (error) {
+        console.error("Error deleting song:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get('/update/:id', async (req, res) => {
+    const song = await songs.findById(req.params.id);
+    if (!song) return res.status(404).send("Song not found");
+    res.render('update', { song });
+});
+
+app.post('/update/:id', async (req, res) => {
+    await songs.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect('/musicfeed');
 });
 
 // Server Start
