@@ -86,9 +86,11 @@ app.get("/loading", (req, res) => res.render("login"));
 
 // Home route - passing user info
 app.get("/home", (req, res) => {
-    console.log("User at home route:", req.session.user);  // Debugging
+    console.log("Session User:", req.session.user); // Debugging
+
     res.render("home", { user: req.session.user || null });
 });
+
 
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -129,8 +131,10 @@ app.post("/login", async (req, res) => {
         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
         if (!isPasswordMatch) return res.json({ success: false, message: "Invalid Password." });
 
-        req.session.user = check; // Store user in session
-        return res.redirect("/home");
+        req.session.user = { name: user.name, email: user.email };
+
+        console.log("User saved in session:", req.session.user);
+        res.redirect("/home");
     } catch (error) {
         console.error("Login Error:", error);
         return res.status(500).json({ success: false, message: "Something went wrong." });

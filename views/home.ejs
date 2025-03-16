@@ -24,9 +24,12 @@
     <div class="header__title-search">
         <h1>LYRICA</h1>
     </div>
-    <% if (user) { %>
+    <% if (typeof user !== "undefined" && user) { %>
         <div class="header__welcome">Welcome, <%= user.name %></div>
+    <% } else { %>
+        <div class="header__welcome">Welcome, Guest</div>
     <% } %>
+    
     <a href="/login" class="header__logout">Logout</a>
 </div>
 
