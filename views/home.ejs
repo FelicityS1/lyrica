@@ -19,13 +19,16 @@
 <body>
     <div class="container- px-0">
         
-        <!-- Header Section -->
-        <div class="header">
-            <div class="header__title-search">
-                <h1>LYRICA</h1>
-            </div>
-            <a href="/login" class="header__logout">Logout</a>
-        </div>
+      <!-- Header Section -->
+<div class="header">
+    <div class="header__title-search">
+        <h1>LYRICA</h1>
+    </div>
+    <% if (user) { %>
+        <div class="header__welcome">Welcome, <%= user.name %></div>
+    <% } %>
+    <a href="/login" class="header__logout">Logout</a>
+</div>
 
         <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

@@ -4,33 +4,31 @@ const User = require("./config");
 require("dotenv").config();
 
 // Google OAuth Strategy
-passport.use(
-    new GoogleStrategy(
-        {
-            clientID: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "https://lyrica-1.onrender.com/auth/google/callback"
-        },
-        async (accessToken, refreshToken, profile, done) => {
-            try {
-                let user = await User.findOne({ googleId: profile.id });
-                
-                if (!user) {
-                    user = new User({
-                        googleId: profile.id,
-                        name: profile.displayName,
-                        email: profile.emails[0].value
-                    });
-                    await user.save();
-                }
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "https://lyrica-1.onrender.com/auth/google/callback",
+    passReqToCallback: true
+}, async (req, accessToken, refreshToken, profile, done) => {
+    try {
+        let user = await User.findOne({ googleId: profile.id });
 
-                return done(null, user);
-            } catch (err) {
-                return done(err, null);
-            }
+        if (!user) {
+            user = new User({
+                googleId: profile.id,
+                name: profile.displayName,
+                email: profile.emails[0].value
+            });
+            await user.save();
         }
-    )
-);
+
+        req.session.user = user; // Store user info in session
+
+        return done(null, user);
+    } catch (err) {
+        return done(err, null);
+    }
+}));
 
 // Serialize user into session
 passport.serializeUser((user, done) => {
