@@ -1,6 +1,7 @@
 const express = require('express');
 require("dotenv").config();
 const session = require('express-session');
+const MongoStore = require('connect-mongo');  // ✅ Added for MongoDB session storage
 const passport = require('./passport');  // OAuth
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require("path");
@@ -12,17 +13,21 @@ const { ObjectId } = mongoose.Types;
 
 const app = express();
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-// Express session
+// ✅ MongoDB Session Storage
 app.use(session({
     secret: process.env.SESSION_SECRET || "supersecret",
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        collectionName: "sessions",
+    }),
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
 }));
 
 // Passport
@@ -62,7 +67,6 @@ passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
     done(null, user);
 });
-
 
 // Routes
 app.get("/", (req, res) => res.render("login"));
