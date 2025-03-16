@@ -1,112 +1,133 @@
 const express = require('express');
+require("dotenv").config();
 const session = require('express-session');
+const passport = require('./passport');  // OAuth
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require("path");
 const bcrypt = require("bcrypt");
-const collection = require("./config");
+const User = require("./config");
 const songs = require("./songs");
-const { title } = require('process');
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 
 const app = express();
 
+
 app.use(express.json());
-
-app.use(express.urlencoded({extended: true}));
-
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.render("login");
+// Express session
+app.use(session({
+    secret: process.env.SESSION_SECRET || "supersecret",
+    resave: false,
+    saveUninitialized: true,
+}));
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Google OAuth Configuration
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback"
+}, async (accessToken, refreshToken, profile, done) => {
+    try {
+        let user = await User.findOne({ googleId: profile.id });
+
+        if (!user) {
+            user = new User({
+                googleId: profile.id,
+                name: profile.displayName,
+                email: profile.emails[0].value
+            });
+
+            await user.save();
+        }
+
+        return done(null, user);
+    } catch (err) {
+        return done(err, null);
+    }
+}));
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
 });
 
-app.get('/login', (req, res) => {
-    res.render('login');
+passport.deserializeUser(async (id, done) => {
+    const user = await User.findById(id);
+    done(null, user);
 });
 
-app.get("/signup", (req, res) => {
-    res.render("signup");
-});
+// Routes
+app.get("/", (req, res) => res.render("login"));
+app.get("/login", (req, res) => res.render("login"));
+app.get("/signup", (req, res) => res.render("signup"));
+app.get("/addsongs", (req, res) => res.render("addsongs"));
+app.get("/home", (req, res) => res.render("home"));
+app.get("/loading", (req, res) => res.render("login"));
 
-app.get("/addsongs", (req, res) => {
-    res.render("addsongs"); // Render addSongs.ejs
-});
+// Google OAuth Login
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get("/home", (req, res) => {
-    res.render("home");
-});
+app.get('/auth/google/callback', passport.authenticate('google', {
+    failureRedirect: '/login',
+    successRedirect: '/home'
+}));
 
-app.get('/loading', (req, res) => {
-    res.render('login');
-});
-
-//register user
-
+// Register User
 app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Check if user already exists
-        const existingUser = await collection.findOne({ name: username });
+        const existingUser = await User.findOne({ name: username });
         if (existingUser) {
-            return res.json({ success: false, message: "User already exists! Please choose a different username." });
+            return res.json({ success: false, message: "User already exists!" });
         }
 
-        // Hash password using bcrypt
-        const saltRounds = 10; 
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        const newUser = new collection({ name: username, password: hashedPassword });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ name: username, password: hashedPassword });
         await newUser.save();
 
         return res.json({ success: true, message: "User successfully created!" });
-
     } catch (error) {
         console.error(error);
-        return res.json({ success: false, message: "Server error. Please try again later." });
+        return res.json({ success: false, message: "Server error. Please try again." });
     }
 });
-
-
 
 // User Login
 app.post("/login", async (req, res) => {
     try {
-        const check = await collection.findOne({ name: req.body.username }); // Ensure field name matches DB
-        if (!check) {
-            return res.json({ success: false, message: "User not found." });
-        }
+        const check = await User.findOne({ name: req.body.username });
+        if (!check) return res.json({ success: false, message: "User not found." });
 
         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (isPasswordMatch) {
-            return res.json({ success: true, message: "Login successful." }); // Respond with JSON
-        } else {
-            return res.json({ success: false, message: "Invalid Password." });
-        }
+        return res.json({ success: isPasswordMatch, message: isPasswordMatch ? "Login successful." : "Invalid Password." });
     } catch (error) {
         console.error("Login Error:", error);
         return res.status(500).json({ success: false, message: "Something went wrong." });
     }
 });
 
+// Logout
+app.get("/logout", (req, res) => {
+    req.logout((err) => {
+        if (err) return next(err);
+        res.redirect("/");
+    });
+});
 
+// Songs CRUD
 app.post("/addsongs", async (req, res) => {
     try {
-        const newSong = new songs({
-            title: req.body.title,
-            artist: req.body.artist,
-            lyrics: req.body.lyrics,
-            youtube: req.body.youtube,
-        });
-
+        const newSong = new songs(req.body);
         await newSong.save();
-        console.log("Song added:", newSong);
-
-        // Send a response to the frontend that the song was added
         res.redirect("/musicfeed");
-
     } catch (err) {
         console.error(err);
         res.status(500).send("Error adding song.");
@@ -115,30 +136,22 @@ app.post("/addsongs", async (req, res) => {
 
 app.get("/musicfeed", async (req, res) => {
     try {
-        const songList = await songs.find(); // Fetch all songs from Atlas
-        console.log("Fetched Songs:", songList);// Debugging Log
-        res.render("musicfeed", { songs: songList }); // Pass songs to EJS
+        const songList = await songs.find();
+        res.render("musicfeed", { songs: songList });
     } catch (error) {
         console.error("Error fetching songs:", error);
         res.status(500).send("Internal Server Error");
     }
 });
 
-
 app.get("/musicfeed/:id", async (req, res) => {
     try {
-        // Ensure the ID is a valid ObjectId
-        if (!ObjectId.isValid(req.params.id)) {
-            return res.status(400).send("Invalid song ID");
-        }
+        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
 
         const song = await songs.findById(req.params.id).lean();
+        if (!song) return res.status(404).send("Song not found");
 
-        if (!song) {
-            return res.status(404).send("Song not found");
-        }
-
-        res.render("songdetails", { song }); // Render song details page
+        res.render("songdetails", { song });
     } catch (error) {
         console.error("Error fetching song:", error);
         res.status(500).send("Internal Server Error");
@@ -147,18 +160,12 @@ app.get("/musicfeed/:id", async (req, res) => {
 
 app.post("/delete/:id", async (req, res) => {
     try {
-        if (!ObjectId.isValid(req.params.id)) {
-            return res.status(400).send("Invalid song ID");
-        }
+        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
 
         const deletedSong = await songs.findByIdAndDelete(req.params.id);
+        if (!deletedSong) return res.status(404).send("Song not found");
 
-        if (!deletedSong) {
-            return res.status(404).send("Song not found");
-        }
-
-        console.log("Deleted song:", deletedSong);
-        res.redirect("/musicfeed"); // Redirect after deleting
+        res.redirect("/musicfeed");
     } catch (error) {
         console.error("Error deleting song:", error);
         res.status(500).send("Internal Server Error");
@@ -166,23 +173,16 @@ app.post("/delete/:id", async (req, res) => {
 });
 
 app.get('/update/:id', async (req, res) => {
-    const songId = req.params.id;
-    const song = await songs.findById(songId);
-    if (!song) {
-        return res.status(404).send("Song not found");
-    }
+    const song = await songs.findById(req.params.id);
+    if (!song) return res.status(404).send("Song not found");
     res.render('update', { song });
 });
 
 app.post('/update/:id', async (req, res) => {
-    const { title, artist, youtube, lyrics } = req.body;
-    await songs.findByIdAndUpdate(req.params.id, { title, artist, youtube, lyrics });
+    await songs.findByIdAndUpdate(req.params.id, req.body);
     res.redirect('/musicfeed');
 });
 
-
- 
+// Server Start
 const port = 5000;
-app.listen(port, () => {
-    console.log(`Server running on Port: ${port}`);
-})
+app.listen(port, () => console.log(`Server running on Port: ${port}`));

@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Toast Notification -->
 </head>
+
 <body>
-    <div class="container- px-0">
+    <div class="container px-0">
         <!-- Header Section -->
         <div class="header">
             <div class="header__title-search">
@@ -22,9 +23,9 @@
 
         <div class="form-container">
             <h2>Login</h2>
-            <form id="loginForm" action="/login" method="post"> 
+            <form id="loginForm" action="/login" method="post">
                 <div class="form-group">
-                    <label for="name">Username:</label> 
+                    <label for="name">Username:</label>
                     <input type="text" id="name" name="username" placeholder="Enter your username" required autocomplete="off">
                 </div>
                 <div class="form-group">
@@ -32,73 +33,82 @@
                     <input type="password" name="password" id="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="submit-btn">Login</button>
+
+                <!-- Google Login Button -->
+                <div class="google-login-container">
+                    <a href="/auth/google" class="google-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+                        Login with Google
+                    </a>
+                </div>
+
+                <!-- Signup link inside the form-container -->
+                <p class="signup-text">Don't have an account? <a href="/signup">Signup</a></p>
             </form>
-            <p>Don't have an account? <a href="/signup">Signup</a></p>
         </div>
-    
+
         <script>
-           document.getElementById("loginForm").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Prevent page reload
-    console.log("Login form submitted");
+            document.getElementById("loginForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // Prevent page reload
+                console.log("Login form submitted");
 
-    const username = document.getElementById("name").value;
-    const password = document.getElementById("password").value;
-    console.log("Username:", username, "Password:", password);
+                const username = document.getElementById("name").value;
+                const password = document.getElementById("password").value;
+                console.log("Username:", username, "Password:", password);
 
-    try {
-        const response = await fetch("/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
+                try {
+                    const response = await fetch("/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username, password })
+                    });
 
-        console.log("Response Status:", response.status);
+                    console.log("Response Status:", response.status);
 
-        const result = await response.json(); // Ensure JSON response parsing
-        console.log("API Response:", result);
+                    const result = await response.json();
+                    console.log("API Response:", result);
 
-        if (result.success) {
-            Swal.fire({
-                toast: true,
-                position: "top-end",
-                icon: "success",
-                title: "Login successful!",
-                timer: 2000,
-                showConfirmButton: false,
-                width: "300px",
-                timerProgressBar: true
-            }).then(() => {
-                window.location.href = "/home";
+                    if (result.success) {
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "success",
+                            title: "Login successful!",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            width: "300px",
+                            timerProgressBar: true
+                        }).then(() => {
+                            window.location.href = "/home";
+                        });
+                    } else {
+                        console.log("Login failed:", result.message);
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "error",
+                            title: result.message,
+                            timer: 2000,
+                            showConfirmButton: false,
+                            width: "300px",
+                            timerProgressBar: true
+                        });
+                    }
+                } catch (error) {
+                    console.error("Fetch Error:", error);
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "error",
+                        title: "Something went wrong.",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px",
+                        timerProgressBar: true
+                    });
+                }
             });
-        } else {
-            console.log("Login failed:", result.message);
-            Swal.fire({
-                toast: true,
-                position: "top-end",
-                icon: "error",
-                title: result.message, // Show the actual error message
-                timer: 2000,
-                showConfirmButton: false,
-                width: "300px",
-                timerProgressBar: true
-            });
-        }
-    } catch (error) {
-        console.error("Fetch Error:", error);
-        Swal.fire({
-            toast: true,
-            position: "top-end",
-            icon: "error",
-            title: "Something went wrong.",
-            timer: 2000,
-            showConfirmButton: false,
-            width: "300px",
-            timerProgressBar: true
-        });
-    }
-});
-
         </script>
-    
 </body>
+
 </html>

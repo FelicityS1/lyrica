@@ -1,14 +1,14 @@
 * {
-    margin: 0; 
+    margin: 0;
     padding: 0;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .header {
-    height: 15%; 
-    width: 100%; /* Full width */
-    background: linear-gradient(to right, #FF69B4, #B18FCF); /* Gradient for the header */
-    position: fixed; /* Fix it at the top */
+    height: 15%;
+    width: 100%;
+    background: linear-gradient(to right, #FF69B4, #B18FCF);
+    position: fixed;
     top: 0;
     left: 0;
     color: white;
@@ -20,41 +20,44 @@
 
 .header__title-search h1 {
     margin: 0;
-    font-size: 3vw; 
-    color: white; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-    font-family: 'Poppins', sans-serif; 
-    font-weight: bold; 
-    letter-spacing: 2px; 
+    font-size: 3vw;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
-
-/* Body background set to black */
 body {
     height: 100vh;
+    margin: 0;
+    background: black;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
     align-items: center;
     justify-content: center;
-    background: black; /* Black background */
-    padding-top: 60px; /* Prevent content from overlapping the fixed header */
 }
 
-/* Updated form container */
+
 .form-container {
-    width: 350px; /* Increase size */
-    height: 350px; /* Keep square shape */
+    width: 350px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content inside */
-    justify-content: center; /* Center content inside */
+    align-items: center;
+    justify-content: center;
     padding: 30px;
     border: 4px solid black;
     border-radius: 10px;
     background: white;
+    
+    /* Centering Fix */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Adjust form elements */
+
 .form-group {
     width: 100%;
     margin-bottom: 15px;
@@ -64,7 +67,7 @@ body {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: black; /* Ensure visibility */
+    color: black;
 }
 
 .form-group input {
@@ -91,9 +94,45 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .submit-btn:hover {
     background: #B18FCF;
 }
 
+.google-login-container {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+}
+
+.google-btn img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.google-btn:hover {
+    background: #f5f5f5;
+}
+
+.signup-text {
+    margin-top: 15px;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+}
