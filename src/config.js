@@ -9,8 +9,6 @@ connect.then(() => {
 .catch(() => {
     console.log("Database connection failed");
 });
-// Schema creation
-const mongoose = require("mongoose");
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB")
