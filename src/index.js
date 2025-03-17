@@ -252,6 +252,19 @@ app.post('/update/:id', async (req, res) => {
     res.redirect('/musicfeed');
 });
 
+app.get("/admin-home", isAdmin, async (req, res) => {
+    try {
+        const newSongs = await Song.find({ status: "pending" }); // Fetch newly submitted songs
+        const modifiedSongs = await Song.find({ status: "modified" }); // Fetch modified songs
+        const deletedSongs = await Song.find({ status: "deleted" }); // Fetch deleted songs
+
+        res.render("admin-home", { newSongs, modifiedSongs, deletedSongs });
+    } catch (error) {
+        console.error("Error fetching songs for admin-home:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 // Server Start
 const port = 5000;
 app.listen(port, () => console.log(`Server running on Port: ${port}`));
