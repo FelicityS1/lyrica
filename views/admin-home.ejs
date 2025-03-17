@@ -71,19 +71,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% newSongs.forEach(song => { %>
-                                <tr>
-                                    <td><%= song.title %></td>
-                                    <td><%= song.artist %></td>
-                                    <td><%= song.submittedBy %></td>
-                                    <td><%= song.dateSubmitted %></td>
-                                    <td>
-                                        <a href="/approve/<%= song._id %>" class="btn btn-success btn-sm">Approve</a>
-                                        <a href="/delete/<%= song._id %>" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                </tr>
-                            <% }) %>
+                            <% if (newSongs && newSongs.length > 0) { %>
+                                <% newSongs.forEach(song => { %>
+                                    <tr>
+                                        <td><%= song.title %></td>
+                                        <td><%= song.artist %></td>
+                                        <td><%= song.submittedBy %></td>
+                                        <td><%= song.dateSubmitted %></td>
+                                        <td>
+                                            <a href="/approve/<%= song._id %>" class="btn btn-success btn-sm">Approve</a>
+                                            <a href="/delete/<%= song._id %>" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr><td colspan="5">No new songs submitted.</td></tr>
+                            <% } %>
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

@@ -27,6 +27,11 @@ const SongsSchema = new mongoose.Schema({
     youtube: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        enum: ["pending", "approved", "modified", "deleted"],
+        default: "pending"
     }
 });
 

@@ -254,9 +254,9 @@ app.post('/update/:id', async (req, res) => {
 
 app.get("/admin-home", async (req, res) => {
     try {
-        const newSongs = await Song.find({ status: "pending" }); // Fetch newly submitted songs
-        const modifiedSongs = await Song.find({ status: "modified" });
-        const deletedSongs = await Song.find({ status: "deleted" });
+        const newSongs = await songs.find({ status: "pending" }); // Fetch newly submitted songs
+        const modifiedSongs = await songs.find({ status: "modified" });
+        const deletedSongs = await songs.find({ status: "deleted" });
 
         console.log("Fetched newSongs:", newSongs);
         console.log("Fetched modifiedSongs:", modifiedSongs);
