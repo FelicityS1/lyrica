@@ -84,10 +84,14 @@ app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => res.render("addsongs"));
 app.get("/home", (req, res) => res.render("home"));
 app.get("/loading", (req, res) => res.render("login"));
-app.get("/admin-promo", isAdmin, (req, res) => {res.render("admin-promo"); //  Only accessible by admins
-app.get("/admin-home", isAdmin, (req, res) => {res.render("admin-home"); // Only accessible by admins
-    });
+app.get("/admin-promo", isAdmin, (req, res) => {
+    res.render("admin-promo"); // Only accessible by admins
 });
+
+app.get("/admin-home", isAdmin, (req, res) => {
+    res.render("admin-home"); // Only accessible by admins
+});
+
 
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
