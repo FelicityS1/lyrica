@@ -69,18 +69,19 @@
                     console.log("API Response:", result);
 
                     if (result.success) {
-                        Swal.fire({
-                            toast: true,
-                            position: "top-end",
-                            icon: "success",
-                            title: "Login successful!",
-                            timer: 2000,
-                            showConfirmButton: false,
-                            width: "300px",
-                            timerProgressBar: true
-                        }).then(() => {
-                            window.location.href = "/home";
-                        });
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successful!",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        width: "300px",
+                        timerProgressBar: true
+                    }).then(() => {
+                        window.location.href = result.redirect; // Dynamically redirect based on role
+                    });
+
                     } else {
                         console.log("Login failed:", result.message);
                         Swal.fire({

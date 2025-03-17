@@ -93,9 +93,15 @@ app.get("/admin-home", isAdmin, (req, res) => {res.render("admin-home"); // Only
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-    failureRedirect: '/login',
-    successRedirect: '/home'
-}));
+    failureRedirect: '/login'
+}), (req, res) => {
+    // Redirect based on role
+    if (req.user.role === "admin") {
+        return res.redirect("/admin-home");
+    }
+    return res.redirect("/home");
+});
+
 
 // Register User
 app.post("/signup", async (req, res) => {
@@ -149,11 +155,24 @@ app.post("/admin-promo", async (req, res) => {
 // User Login
 app.post("/login", async (req, res) => {
     try {
-        const check = await User.findOne({ name: req.body.username });
-        if (!check) return res.json({ success: false, message: "User not found." });
+        const user = await User.findOne({ name: req.body.username });
+        if (!user) return res.json({ success: false, message: "User not found." });
 
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        return res.json({ success: isPasswordMatch, message: isPasswordMatch ? "Login successful." : "Invalid Password." });
+        const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+        if (!isPasswordMatch) return res.json({ success: false, message: "Invalid Password." });
+
+        req.session.user = user; // Store user in session
+        req.login(user, (err) => {
+            if (err) return res.status(500).json({ success: false, message: "Login error." });
+
+            // Redirect based on role
+            if (user.role === "admin") {
+                return res.json({ success: true, redirect: "/admin-home" });
+            } else {
+                return res.json({ success: true, redirect: "/home" });
+            }
+        });
+
     } catch (error) {
         console.error("Login Error:", error);
         return res.status(500).json({ success: false, message: "Something went wrong." });
