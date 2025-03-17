@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Admin</title>
+</head>
+<body>
+    <h2>Promote User to Admin</h2>
+
+    <form id="adminForm">
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" name="userId" required>
+        <button type="submit">Make Admin</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script>
+        document.getElementById("adminForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const userId = document.getElementById("userId").value;
+
+            const response = await fetch("/set-admin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ userId })
+            });
+
+            const result = await response.json();
+            document.getElementById("responseMessage").innerText = result.message;
+        });
+    </script>
+</body>
+</html>

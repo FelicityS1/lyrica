@@ -1,7 +1,7 @@
 const express = require('express');
 require("dotenv").config();
 const session = require('express-session');
-const MongoStore = require('connect-mongo');  // ✅ Added for MongoDB session storage
+const MongoStore = require('connect-mongo');  // Added for MongoDB session storage
 const passport = require('./passport');  // OAuth
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require("path");
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-// ✅ MongoDB Session Storage
+// MongoDB Session Storage
 app.use(session({
     secret: process.env.SESSION_SECRET || "supersecret",
     resave: false,
@@ -33,6 +33,13 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+// Middleware to check if user is an admin
+const isAdmin = (req, res, next) => {
+    if (req.isAuthenticated() && req.user.role === "admin") {
+        return next();
+    }
+    return res.status(403).json({ success: false, message: "Access denied." });
+};
 
 // Google OAuth Configuration
 passport.use(new GoogleStrategy({
@@ -47,7 +54,8 @@ passport.use(new GoogleStrategy({
             user = new User({
                 googleId: profile.id,
                 name: profile.displayName,
-                email: profile.emails[0].value
+                email: profile.emails[0].value,
+                role: "user" // Default role assigned
             });
 
             await user.save();
@@ -58,6 +66,7 @@ passport.use(new GoogleStrategy({
         return done(err, null);
     }
 }));
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -75,6 +84,10 @@ app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => res.render("addsongs"));
 app.get("/home", (req, res) => res.render("home"));
 app.get("/loading", (req, res) => res.render("login"));
+app.get("/admin-promo", isAdmin, (req, res) => {res.render("set-admin"); //  Only accessible by admins
+app.get("/admin-home", isAdmin, (req, res) => {res.render("admin-dashboard"); // Only accessible by admins
+    });
+});
 
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -95,13 +108,41 @@ app.post("/signup", async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ name: username, password: hashedPassword });
-        await newUser.save();
+        const newUser = new User({
+            name: username,
+            password: hashedPassword,
+            role: "user" // Default role assigned
+        });
 
+        await newUser.save();
         return res.json({ success: true, message: "User successfully created!" });
     } catch (error) {
         console.error(error);
         return res.json({ success: false, message: "Server error. Please try again." });
+    }
+});
+
+app.post("/set-admin", async (req, res) => {
+    const { userId } = req.body;
+
+    try {
+        // Ensure only admins can change roles
+        if (!req.user || req.user.role !== "admin") {
+            return res.status(403).json({ success: false, message: "Unauthorized" });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        user.role = "admin";
+        await user.save();
+
+        res.json({ success: true, message: "User promoted to admin." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error." });
     }
 });
 

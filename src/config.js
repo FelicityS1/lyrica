@@ -41,6 +41,11 @@ const UserSchema = new mongoose.Schema({
             return !this.googleId; 
         }
     },
+    role: { 
+        type: String, 
+        enum: ["admin", "user"],  // Admin or User roles only
+        default: "user"  // Default role
+    }
 });
 
 // Create Model
