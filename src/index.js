@@ -88,11 +88,6 @@ app.get("/admin-promo", isAdmin, (req, res) => {
     res.render("admin-promo"); // Only accessible by admins
 });
 
-app.get("/admin-home", isAdmin, (req, res) => {
-    res.render("admin-home"); // Only accessible by admins
-});
-
-
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
