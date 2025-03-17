@@ -226,15 +226,21 @@ app.post("/delete/:id", async (req, res) => {
     try {
         if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
 
-        const deletedSong = await songs.findByIdAndDelete(req.params.id);
-        if (!deletedSong) return res.status(404).send("Song not found");
+        const song = await songs.findById(req.params.id);
+        if (!song) return res.status(404).send("Song not found");
+
+        // Instead of deleting, mark as deleted
+        song.status = "deleted";
+        song.deletedBy = req.user ? req.user.name : "Unknown"; // Track user who deleted it
+        await song.save();
 
         res.redirect("/musicfeed");
     } catch (error) {
-        console.error("Error deleting song:", error);
+        console.error("Error marking song as deleted:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 app.get('/update/:id', async (req, res) => {
     const song = await songs.findById(req.params.id);
@@ -243,13 +249,30 @@ app.get('/update/:id', async (req, res) => {
 });
 
 app.post('/update/:id', async (req, res) => {
-    await songs.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect('/musicfeed');
+    try {
+        const song = await songs.findById(req.params.id);
+        if (!song) return res.status(404).send("Song not found");
+
+        // Update song details
+        song.title = req.body.title;
+        song.artist = req.body.artist;
+        song.lyrics = req.body.lyrics;
+        song.youtubeUrl = req.body.youtubeUrl;
+
+        song.status = "modified"; // Mark as modified
+        song.modifiedBy = req.user ? req.user.name : "Unknown"; // Track who modified song
+        await song.save();
+
+        res.redirect('/musicfeed');
+    } catch (error) {
+        console.error("Error updating song:", error);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
-app.get("/admin-home", async (req, res) => {
+app.get("/admin-home", isAdmin, async (req, res) => {
     try {
-        const newSongs = await songs.find({ status: "pending" }); // Fetch newly submitted songs
+        const newSongs = await songs.find({ status: "pending" });
         const modifiedSongs = await songs.find({ status: "modified" });
         const deletedSongs = await songs.find({ status: "deleted" });
 
