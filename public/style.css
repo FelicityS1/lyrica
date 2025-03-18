@@ -613,7 +613,7 @@ p {
 }
 
 .feedback-form__button:hover {
-    background-color: #0056b3;
+    background-color: #c54384;
 }
 
 .live-search-results {
@@ -934,7 +934,7 @@ font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 4px solid #ff4500; /* Accent color for admin */
+    border-bottom: 4px solid #ffcc00; /* Accent color for admin */
 }
 
 .admin-header__title h1 {
@@ -943,7 +943,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .admin-header__logout {
-    color: #ff4500;
+    color: #ffcc00;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
