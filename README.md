@@ -13,13 +13,13 @@ Lyrica is a web application designed to help users manage and browse song lyrics
 
 ## How to Clone
 
-1. 
+1. Clone the repository
 ![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture.PNG?raw=true)
 
-2.
+2. Extract the downloaded repository file
 ![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture2.PNG?raw=true)
 
-3.
+3. Open the file on a terminal to view and run the code
 ![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture3.PNG?raw=true)
 
 ## How to use
