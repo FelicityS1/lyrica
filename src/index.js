@@ -178,13 +178,22 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Logout
-app.get("/logout", (req, res) => {
-    req.logout((err) => {
-        if (err) return next(err);
-        res.redirect("/");
+app.get('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy(() => {
+        res.redirect('/login');
     });
 });
+
+
+app.get('/home', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    res.render('home', { user: req.session.user });
+});
+
+
 
 app.post("/addsongs", async (req, res) => {
     try {
