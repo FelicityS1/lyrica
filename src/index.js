@@ -193,6 +193,9 @@ app.get('/home', (req, res) => {
     res.render('home', { user: req.session.user });
 });
 
+app.get("/home", (req, res) => {
+    res.render("home", { user: req.user }); // Make sure `req.user` is properly set
+});
 
 
 app.post("/addsongs", async (req, res) => {
