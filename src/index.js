@@ -188,11 +188,14 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.get('/home', (req, res) => {
-    if (!req.session.user) {
-        return res.redirect('/login');
+app.get("/home", async (req, res) => {
+    try {
+        const users = req.session.user; // Retrieve logged-in user
+        res.render("home", { users }); // Pass `users` to EJS
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-    res.render('home', { user: req.session.user });
 });
 
 

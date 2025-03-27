@@ -1,19 +1,13 @@
 const { name } = require("ejs");
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB");
+const mongoose = require("mongoose");
 
-//check database connection
-connect.then(() => {
-    console.log("Database connected Successfully");
+mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-.catch(() => {
-    console.log("Database connection failed");
-});
-
-// Connect to MongoDB
-mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB")
-    .then(() => console.log("Database connected successfully"))
-    .catch(() => console.log("Database connection failed"));
+.then(() => console.log("Database connected successfully"))
+.catch((error) => console.log("Database connection failed:", error));
 
 // Define User Schema
 const UserSchema = new mongoose.Schema({
