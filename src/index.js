@@ -83,7 +83,8 @@ app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => res.render("addsongs"));
 app.get("/home", (req, res) => {
-    res.render("home", { user: req.user }); // Make sure `req.user` is properly set
+    const user = req.user || req.session.user;
+    res.render("home", { users: user }); 
 });
 app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
@@ -186,18 +187,6 @@ app.get('/logout', (req, res) => {
         res.redirect('/login');
     });
 });
-
-
-app.get("/home", async (req, res) => {
-    try {
-        const users = req.session.user; // Retrieve logged-in user
-        res.render("home", { users }); // Pass `users` to EJS
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
 
 app.post("/addsongs", async (req, res) => {
     try {
