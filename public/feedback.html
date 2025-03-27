@@ -18,13 +18,19 @@
 
 <body>
 
-    <div class="container- px-0">
-        <div class="header">
-            <div class="header__title-search">
-                <h1>LYRICA</h1>
-            </div>
-            <a href="/login" class="header__logout">Logout</a>
+    <div class="header">
+        <div class="header__title-search">
+            <h1>LYRICA</h1>
         </div>
+        <% if (users && users.name) { %>
+            <div class="header__user-section">
+                <span class="header__welcome">Welcome, <%= users.name %>!</span>
+                <a href="/logout" class="header__logout">Logout</a>
+            </div>
+        <% } else { %>
+            <a href="/login" class="header__logout">Login</a>
+        <% } %>
+    </div>
 
         <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
