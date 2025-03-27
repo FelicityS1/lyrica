@@ -212,9 +212,10 @@ app.post("/addsongs", async (req, res) => {
 });
 
 
+// Music Feed Routes
 app.get("/musicfeed", async (req, res) => {
     try {
-        const songList = await songs.find();
+        const songList = await songs.find({ status: { $ne: "deleted" } });
         res.render("musicfeed", { songs: songList });
     } catch (error) {
         console.error("Error fetching songs:", error);
@@ -222,12 +223,13 @@ app.get("/musicfeed", async (req, res) => {
     }
 });
 
-app.get("/musicfeed/:id", async (req, res) => {
+// Single Song View
+app.get("/song/:id", async (req, res) => {
     try {
         if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
 
         const song = await songs.findById(req.params.id).lean();
-        if (!song) return res.status(404).send("Song not found");
+        if (!song || song.status === "deleted") return res.status(404).send("Song not found");
 
         res.render("songdetails", { song });
     } catch (error) {
@@ -236,33 +238,19 @@ app.get("/musicfeed/:id", async (req, res) => {
     }
 });
 
-app.post("/delete/:id", async (req, res) => {
+// Update Song
+app.get("/updatesong/:id", async (req, res) => {
     try {
-        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
-
         const song = await songs.findById(req.params.id);
         if (!song) return res.status(404).send("Song not found");
-
-        // Instead of deleting, mark as deleted
-        song.status = "deleted";
-        song.deletedBy = req.user ? req.user.name : "Unknown"; // Track user who deleted it
-        await song.save();
-
-        res.redirect("/musicfeed");
+        res.render('update', { song });
     } catch (error) {
-        console.error("Error marking song as deleted:", error);
+        console.error("Error loading update page:", error);
         res.status(500).send("Internal Server Error");
     }
 });
 
-
-app.get('/update/:id', async (req, res) => {
-    const song = await songs.findById(req.params.id);
-    if (!song) return res.status(404).send("Song not found");
-    res.render('update', { song });
-});
-
-app.post('/update/:id', async (req, res) => {
+app.post("/updatesong/:id", async (req, res) => {
     try {
         const song = await songs.findById(req.params.id);
         if (!song) return res.status(404).send("Song not found");
@@ -271,10 +259,10 @@ app.post('/update/:id', async (req, res) => {
         song.title = req.body.title;
         song.artist = req.body.artist;
         song.lyrics = req.body.lyrics;
-        song.youtubeUrl = req.body.youtubeUrl;
+        song.youtube = req.body.youtube; // Changed from youtubeUrl to match your schema
 
-        song.status = "modified"; // Mark as modified
-        song.modifiedBy = req.user ? req.user.name : "Unknown"; // Track who modified song
+        song.status = "modified";
+        song.modifiedBy = req.user ? req.user.name : "Unknown";
         await song.save();
 
         res.redirect('/musicfeed');
@@ -284,6 +272,24 @@ app.post('/update/:id', async (req, res) => {
     }
 });
 
+// Delete Song
+app.post("/deletesong/:id", async (req, res) => {
+    try {
+        if (!ObjectId.isValid(req.params.id)) return res.status(400).send("Invalid song ID");
+
+        const song = await songs.findById(req.params.id);
+        if (!song) return res.status(404).send("Song not found");
+
+        song.status = "deleted";
+        song.deletedBy = req.user ? req.user.name : "Unknown";
+        await song.save();
+
+        res.redirect("/musicfeed");
+    } catch (error) {
+        console.error("Error marking song as deleted:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 app.get("/admin-home", isAdmin, async (req, res) => {
     try {
         const newSongs = await songs.find({ status: "pending" });
