@@ -33,7 +33,6 @@ const SongsSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ["pending", "approved", "modified", "deleted"],
-        enum: ["approved", "pending", "modified", "deleted"],
         default: "approved"
     },
     modifiedBy: String, // Store user who modified the song

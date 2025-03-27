@@ -222,7 +222,7 @@ app.post("/addsongs", async (req, res) => {
 // Music Feed Routes
 app.get("/musicfeed", async (req, res) => {
     try {
-        const songList = await songs.find({ status: { $ne: "deleted" } });
+        const songList = await Songs.find({ status: { $ne: "deleted" } });
         res.render("musicfeed", { songs: songList });
     } catch (error) {
         console.error("Error fetching songs:", error);
