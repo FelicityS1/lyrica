@@ -28,6 +28,8 @@ const SongsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    submittedBy: { type: String, default: "Anonymous" 
+    },
     status: {
         type: String,
         enum: ["pending", "approved", "modified", "deleted"],
@@ -36,6 +38,7 @@ const SongsSchema = new mongoose.Schema({
     },
     modifiedBy: String, // Store user who modified the song
     deletedBy: String // Store user who deleted the song
+
 });
 
 //collection Part

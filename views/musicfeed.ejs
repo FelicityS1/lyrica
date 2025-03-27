@@ -68,24 +68,26 @@
         <div class="musicfeed-container">
             <h2>SONG LIST</h2>
 
-            <div class="musicfeed-list">
-                <% if (typeof songs !== "undefined" && songs.length > 0) { %>
-                    <ul class="musicfeed-list">
-                        <% songs.forEach(song => { %>
-                            <li class="musicfeed-item">
-                                <div class="song-details">
-                                    <a href="/musicfeed/<%= song._id %>"><%= song.title %> - <%= song.artist %></a>
-                                </div>
-                                    <div class="button-group">
-                                        <a href="/update/<%= song._id %>" class="update-button">Update</a>
-                                        <form action="/delete/<%= song._id %>" method="POST" class="delete-form">
-                                            <button type="submit" class="delete-button">Delete</button>
-                                        </form>
-                                    </div>
-                                    
-                            </li>
-                        <% }) %>
-                    </ul>
+            <ul class="musicfeed-list">
+                <% songs.forEach(song => { %>
+                    <li class="musicfeed-item">
+                        <div class="song-details">
+                            <div>
+                                <a href="/song/<%= song._id %>"><%= song.title %> - <%= song.artist %></a>
+                                <p class="submitted-by">Submitted by: <%= song.submittedBy || "Anonymous" %></p>
+                            </div>
+                            <div class="button-group">
+                                <a href="/updatesong/<%= song._id %>" class="update-button">Update</a>
+                                <form class="delete-form" action="/deletesong/<%= song._id %>" method="POST">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    
+                <% }) %>
+            </ul>
+            
                 <% } else { %>
                     <p class="musicfeed-empty">No songs have been submitted yet.</p>
                 <% } %>

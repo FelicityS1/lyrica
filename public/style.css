@@ -817,6 +817,14 @@ font-family: 'Poppins', sans-serif;
     width: 100%;
 }
 
+/* Submitted By - Song Contributor */
+.submitted-by {
+    font-size: 14px;
+    color: #666;  /* Subtle color */
+    margin-top: 3px;
+    font-family: 'Inter', sans-serif;
+}
+
 .button-group {
     display: flex;
     gap: 10px;

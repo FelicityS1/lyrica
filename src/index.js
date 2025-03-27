@@ -186,10 +186,16 @@ app.get("/logout", (req, res) => {
     });
 });
 
-// Songs CRUD
 app.post("/addsongs", async (req, res) => {
     try {
-        const newSong = new songs(req.body);
+        const newSong = new songs({
+            title: req.body.title,
+            artist: req.body.artist,
+            lyrics: req.body.lyrics,
+            youtube: req.body.youtube,
+            submittedBy: req.body.username || "Anonymous" // Get submitter's name
+        });
+
         await newSong.save();
         res.redirect("/musicfeed");
     } catch (err) {
@@ -197,6 +203,7 @@ app.post("/addsongs", async (req, res) => {
         res.status(500).send("Error adding song.");
     }
 });
+
 
 app.get("/musicfeed", async (req, res) => {
     try {
