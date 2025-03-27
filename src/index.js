@@ -236,7 +236,7 @@ app.get("/song/:id", async (req, res) => {
         const song = await songs.findById(req.params.id).lean();
         if (!song || song.status === "deleted") return res.status(404).send("Song not found");
 
-        res.render("songdetails", { song });
+        res.render("songdetails", { song, users: req.user || req.session.user });
     } catch (error) {
         console.error("Error fetching song:", error);
         res.status(500).send("Internal Server Error");
