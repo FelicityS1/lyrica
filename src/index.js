@@ -259,7 +259,7 @@ app.post("/updatesong/:id", async (req, res) => {
         song.title = req.body.title;
         song.artist = req.body.artist;
         song.lyrics = req.body.lyrics;
-        song.youtube = req.body.youtube; // Changed from youtubeUrl to match your schema
+        song.youtube = req.body.youtube;
 
         song.status = "modified";
         song.modifiedBy = req.user ? req.user.name : "Unknown";

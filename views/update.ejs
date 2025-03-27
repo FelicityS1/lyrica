@@ -11,7 +11,7 @@
 
     <div class="container">
         <h2>Update Song</h2>
-        <form action="/update/<%= song._id %>" method="POST">
+        <form action="/updatesong/<%= song._id %>" method="POST">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" value="<%= song.title %>" required>
