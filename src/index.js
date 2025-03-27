@@ -182,9 +182,14 @@ app.post("/login", async (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-    req.logout();
-    req.session.destroy(() => {
-        res.redirect('/login');
+    req.logout((err) => {
+        if (err) { 
+            console.error('Logout error:', err); 
+            return res.redirect('/'); 
+        }
+        req.session.destroy(() => {
+            res.redirect('/login');
+        });
     });
 });
 
