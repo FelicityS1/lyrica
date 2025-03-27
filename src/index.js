@@ -93,13 +93,13 @@ app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
     res.render("admin-promo"); // Only accessible by admins
 });
-app.get("feedback.html", (req, res) => {
+app.get("/feedback", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("feedback.html", { users: user }); 
+    res.render("feedback", { users: user }); 
 });
-app.get("about.html", (req, res) => {
+app.get("/about", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("about.html", { users: user }); 
+    res.render("/about", { users: user }); 
 });
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -227,7 +227,7 @@ app.get("/musicfeed", async (req, res) => {
         const songList = await songs.find({ status: { $ne: "deleted" } });
         res.render("musicfeed", { 
             users: user,
-            songs: songList  // Add this line to pass songs to the template
+            songs: songList  
         }); 
     } catch (error) {
         console.error("Error fetching songs:", error);
