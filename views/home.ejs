@@ -24,8 +24,8 @@
             <div class="header__title-search">
                 <h1>LYRICA</h1>
             </div>
-            <% if (user && user.name) { %>
-                <span class="header__welcome">Welcome, <%= user.name %>!</span>
+            <% if (User && User.name) { %>
+                <span class="header__welcome">Welcome, <%= User.name %>!</span>
                 <a href="/logout" class="header__logout">Logout</a>
             <% } else { %>
                 <a href="/login" class="header__logout">Login</a>
