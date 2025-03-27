@@ -93,7 +93,14 @@ app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
     res.render("admin-promo"); // Only accessible by admins
 });
-
+app.get("feedback.html", (req, res) => {
+    const user = req.user || req.session.user;
+    res.render("feedback.html", { users: user }); 
+});
+app.get("about.html", (req, res) => {
+    const user = req.user || req.session.user;
+    res.render("about.html", { users: user }); 
+});
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
