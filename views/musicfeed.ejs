@@ -75,7 +75,8 @@
                             <div class="song-details">
                                 <div>
                                     <a href="/song/<%= song._id %>"><%= song.title %> - <%= song.artist %></a>
-                                    <p class="submitted-by">Submitted by: <%= song.submittedBy || "Anonymous" %></p>
+                                    <p class="submitted-by">Submitted by: <%= song.submittedBy.name || "Anonymous" %></p>
+
                                 </div>
                                 <div class="button-group">
                                     <a href="/updatesong/<%= song._id %>" class="update-button">Update</a>
