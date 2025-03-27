@@ -1,6 +1,5 @@
 const { name } = require("ejs");
 const mongoose = require("mongoose");
-const mongoose = require("mongoose");
 
 mongoose.connect("mongodb+srv://Lizzy123:Testing123abc@lyricadb.mngvl.mongodb.net/LyricaDB", {
     useNewUrlParser: true,
