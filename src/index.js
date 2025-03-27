@@ -210,9 +210,8 @@ app.post("/addsongs", async (req, res) => {
             artist: req.body.artist,
             lyrics: req.body.lyrics,
             youtube: req.body.youtube,
-            submittedBy: req.user ? req.user._id : "Anonymous", // Get submitter's name
+            submittedBy: req.user ? req.user.username || req.user.name : "Anonymous"
         });
-
         await newSong.save();
         res.redirect("/musicfeed");
     } catch (err) {
