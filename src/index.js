@@ -82,7 +82,9 @@ app.get("/", (req, res) => res.render("login"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => res.render("addsongs"));
-app.get("/home", (req, res) => res.render("home"));
+app.get("/home", (req, res) => {
+    res.render("home", { user: req.user }); // Make sure `req.user` is properly set
+});
 app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
     res.render("admin-promo"); // Only accessible by admins
@@ -191,10 +193,6 @@ app.get('/home', (req, res) => {
         return res.redirect('/login');
     }
     res.render('home', { user: req.session.user });
-});
-
-app.get("/home", (req, res) => {
-    res.render("home", { user: req.user }); // Make sure `req.user` is properly set
 });
 
 
