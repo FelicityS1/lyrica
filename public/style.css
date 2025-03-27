@@ -10,30 +10,6 @@ p {
     
 }
 
-.header {
-    height: 10%; 
-    background: linear-gradient(to right, #FF69B4, #B18FCF); 
-    position: relative;
-    color: white;
-}
-
-.header__title-search {
-    display: flex;
-    align-items: center;   
-    justify-content: center; 
-    position: relative;     
-}
-
-.header__title-search h1 {
-    margin: 0 2%; 
-    font-size: 3vw; 
-    color: white; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-    font-family: 'Poppins', sans-serif; 
-    font-weight: bold; 
-    letter-spacing: 2px; 
-}
-
 .header__search-bar {
     position: absolute;  
     right: 5%; 
@@ -48,11 +24,47 @@ p {
     border: 1px solid #ccc; 
 }
 
+.header {
+    height: 10%; 
+    background: linear-gradient(to right, #FF69B4, #B18FCF); 
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2%;
+}
+
+.header__title-search {
+    display: flex;
+    align-items: center;   
+    justify-content: center; 
+}
+
+.header__title-search h1 {
+    margin: 0 2%; 
+    font-size: 3vw; 
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: bold; 
+    letter-spacing: 2px; 
+}
+
+.header__user-section {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.header__welcome {
+    font-size: 1vw;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin-right: 1vw;
+}
+
 .header__logout {
-    position: absolute;
-    top: 50%;
-    right: 2%;
-    transform: translateY(-50%);
     background: none;
     border: none;
     font-size: 1vw;
@@ -66,7 +78,6 @@ p {
 .header__logout:hover {
     color: #ffcccc;
 }
-
 .navbar {
     height: 5%; 
     display: flex; 
