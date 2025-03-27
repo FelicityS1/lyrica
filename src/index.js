@@ -85,10 +85,6 @@ app.get("/addsongs", (req, res) => {
     const user = req.user || req.session.user;
     res.render("addsongs", { users: user }); 
     });
-app.get("/musicfeed", (req, res) => {
-    const user = req.user || req.session.user;
-    res.render("musicfeed", { users: user }); 
-});
 app.get("/home", (req, res) => {
     const user = req.user || req.session.user;
     res.render("home", { users: user }); 
