@@ -218,12 +218,14 @@ app.post("/addsongs", async (req, res) => {
     }
 });
 
-
-// Music Feed Routes
 app.get("/musicfeed", async (req, res) => {
     try {
+        const user = req.user || req.session.user;
         const songList = await Songs.find({ status: { $ne: "deleted" } });
-        res.render("musicfeed", { songs: songList });
+        res.render("musicfeed", { 
+            users: user,
+            songs: songList  // Add this line to pass songs to the template
+        }); 
     } catch (error) {
         console.error("Error fetching songs:", error);
         res.status(500).send("Internal Server Error");
