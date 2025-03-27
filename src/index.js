@@ -81,7 +81,14 @@ passport.deserializeUser(async (id, done) => {
 app.get("/", (req, res) => res.render("login"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
-app.get("/addsongs", (req, res) => res.render("addsongs"));
+app.get("/addsongs", (req, res) => {
+    const user = req.user || req.session.user;
+    res.render("addsongs", { users: user }); 
+    });
+app.get("/musicfeed", (req, res) => {
+    const user = req.user || req.session.user;
+    res.render("musicfeed", { users: user }); 
+});
 app.get("/home", (req, res) => {
     const user = req.user || req.session.user;
     res.render("home", { users: user }); 
