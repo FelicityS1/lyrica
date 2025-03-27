@@ -217,7 +217,7 @@ app.post("/addsongs", async (req, res) => {
 app.get("/musicfeed", async (req, res) => {
     try {
         const user = req.user || req.session.user;
-        const songList = await Songs.find({ status: { $ne: "deleted" } });
+        const songList = await songs.find({ status: { $ne: "deleted" } });
         res.render("musicfeed", { 
             users: user,
             songs: songList  // Add this line to pass songs to the template
