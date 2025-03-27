@@ -11,6 +11,20 @@ Lyrica is a web application designed to help users manage and browse song lyrics
 - MongoDB (for database)
 - Mongoose (for data modeling)
 
+## How to Clone
+
+1. Clone the repository
+   
+![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture.PNG?raw=true)
+
+2. Extract the downloaded repository file
+   
+![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture2.PNG?raw=true)
+
+3. Open the file on a terminal to view and run the code
+   
+![image alt](https://github.com/FelicityS1/lyrica/blob/Lyrica_Current/Capture3.PNG?raw=true)
+
 ## How to use
 https://lyrica-1.onrender.com/login
 
@@ -36,4 +50,6 @@ https://lyrica-1.onrender.com/login
 
 7. Music Feed
 	In the music feed tab you can view the song list. You can update the song’s lyrics, and artists if there are any errors, you can also delete a song by clicking the delete button.
+
+(For your peace of mind, all passwords are securely hashed before being stored in the database, ensuring that they cannot be viewed or accessed in plain text by anyone.)
 
