@@ -52,9 +52,12 @@ p {
 }
 
 .header__user-section {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 1vw;
 }
 
 .header__welcome {
@@ -63,7 +66,6 @@ p {
     color: white;
     margin-right: 1vw;
 }
-
 .header__logout {
     background: none;
     border: none;

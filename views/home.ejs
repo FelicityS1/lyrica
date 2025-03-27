@@ -24,14 +24,14 @@
             <div class="header__title-search">
                 <h1>LYRICA</h1>
             </div>
-            <div class="header__user-section">
-                <% if (users && users.name) { %>
+            <% if (users && users.name) { %>
+                <div class="header__user-section">
                     <span class="header__welcome">Welcome, <%= users.name %>!</span>
                     <a href="/logout" class="header__logout">Logout</a>
-                <% } else { %>
-                    <a href="/login" class="header__logout">Login</a>
-                <% } %>
-            </div>
+                </div>
+            <% } else { %>
+                <a href="/login" class="header__logout">Login</a>
+            <% } %>
         </div>
         
 
