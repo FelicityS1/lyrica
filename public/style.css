@@ -86,28 +86,33 @@ p {
     justify-content: center; 
     align-items: center;
     gap: 5%; 
+    padding: 0; 
+    list-style: none; 
 }
 
-.navbar__link {
+.navbar li {
+    display: inline-block; /* Make sure list items display inline */
+    margin: 0 2%; 
+}
+
+.navbar li a {
     text-decoration: none; 
     color: #551470; 
-    padding: 0 2%; 
+    padding: 10px 15px; 
     font-size: 0.9vw; 
     font-family: 'Poppins', sans-serif;
-    line-height: 5%; 
-    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
+    display: block; 
 }
 
-.navbar__link {
-    margin: 0; 
-}
-
+/* Active link styling */
 .navbar li.active a {
     color: #FF69B4;
     font-weight: 700;
     position: relative;
 }
 
+/* Underline effect for active page */
 .navbar li.active a::after {
     content: '';
     position: absolute;
@@ -119,12 +124,9 @@ p {
     border-radius: 3px;
 }
 
-
-.navbar li:not(.active) a:hover {
+/* Hover effect */
+.navbar li a:hover {
     color: #cd96cdc5;
-}
-.navbar__link:hover {
-    color: #cd96cdc5;  
 }
 
 .navbar__dropdown {
