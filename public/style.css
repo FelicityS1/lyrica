@@ -81,7 +81,7 @@ p {
     color: #ffcccc;
 }
 .navbar {
-    height: 6%;
+    height: 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,7 +100,7 @@ p {
 .navbar li a {
     text-decoration: none;
     color: #551470;
-    font-size: 15px;
+    font-size: 20px;
     font-family: 'Poppins', sans-serif;
     padding: 10px 5px;
     display: block; 
