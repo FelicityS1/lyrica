@@ -1113,17 +1113,17 @@ font-family: 'Poppins', sans-serif;
 
 /* Table Container: Prevents Overflow */
 .table__container {
-    max-height: 300px;
-    overflow-y: auto;  /* Enables scrolling */
+    overflow-y: auto;
     overflow-x: auto;
-    border: 1px solid #ddd;
+    max-height: 400px; 
+    display: block; /* Prevents overlap */
 }
 
 /* Table Styling */
 .table-custom {
     width: 100%;
-    border-collapse: separate; /* Prevents merging */
-    border-spacing: 0; /* Removes unnecessary spacing */
+    border-collapse: collapse; /* Prevents merging */
+    table-layout: fixed; /* Ensures uniform column width */
 }
 
 /* Table Header */
@@ -1143,24 +1143,23 @@ font-family: 'Poppins', sans-serif;
     background: #000;
     color: rgb(255, 255, 255);
     border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Table Body Cells */
 .table-custom tbody td {
     padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    word-break: break-word; /* Prevents overflow */
 }
 
-/* Prevent Overlapping */
-.table-custom th {
-    padding: 12px;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.table-custom tbody tr:first-child td {
-    padding-top: 15px;
+/* Ensure Column Widths Are Consistent */
+.table-custom th, .table-custom td {
+    min-width: 150px; 
+    max-width: 250px;
 }
 
 .btn-sm {
