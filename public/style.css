@@ -81,28 +81,30 @@ p {
     color: #ffcccc;
 }
 .navbar {
-    height: 5%; 
-    display: flex; 
-    justify-content: center; 
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 5%; 
-    padding: 0; 
-    list-style: none; 
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .navbar li {
-    display: inline-block; /* Make sure list items display inline */
-    margin: 0 2%; 
+    flex: 1; /* Items are equally spaced */
+    text-align: center;
+    position: relative;
 }
 
 .navbar li a {
-    text-decoration: none; 
-    color: #551470; 
-    padding: 10px 15px; 
-    font-size: 0.9vw; 
+    text-decoration: none;
+    color: #551470;
+    font-size: 0.9vw;
     font-family: 'Poppins', sans-serif;
-    transition: color 0.3s ease;
+    padding: 10px 5px;
     display: block; 
+    transition: color 0.3s ease;
 }
 
 /* Active link styling */
