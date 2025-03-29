@@ -81,7 +81,7 @@ p {
     color: #ffcccc;
 }
 .navbar {
-    height: 5%;
+    height: 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,7 +100,7 @@ p {
 .navbar li a {
     text-decoration: none;
     color: #551470;
-    font-size: 0.9vw;
+    font-size: 15px;
     font-family: 'Poppins', sans-serif;
     padding: 10px 5px;
     display: block; 
@@ -128,7 +128,7 @@ p {
 
 /* Hover effect */
 .navbar li a:hover {
-    color: #cd96cdc5;
+    color: #4a0e4ae0;
 }
 
 .navbar__dropdown {
