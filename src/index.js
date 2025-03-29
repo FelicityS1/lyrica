@@ -339,6 +339,14 @@ app.get("/admin-musicfeed", isAdmin, async (req, res) => {
     }
 });
 
+app.get("/newsongs", async (req, res) => {
+    try {
+        const newSongs = await songs.find().sort({ createdAt: -1 }).limit(10); // Get the latest 10 songs
+        res.render("newsongs", { songs: newSongs });
+    } catch (error) {
+        res.status(500).send("Error fetching new songs");
+    }
+});
 
 
 // Server Start

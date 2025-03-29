@@ -37,8 +37,7 @@ const SongsSchema = new mongoose.Schema({
     },
     modifiedBy: String, // Store user who modified the song
     deletedBy: String // Store user who deleted the song
-
-});
+}, { timestamps: true });
 
 //collection Part
 const songs = new mongoose.model("songs", SongsSchema);
