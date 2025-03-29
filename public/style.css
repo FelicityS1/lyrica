@@ -81,12 +81,15 @@ p {
     color: #ffcccc;
 }
 .navbar {
-    height: 5%; 
-    display: flex; 
-    justify-content: center; 
+    width: 100%;
+    display: flex;
+    justify-content: space-around; 
     align-items: center;
-    gap: 5%; 
-    list-style: none;
+    padding: 1vw 0;
+}
+
+.navbar li {
+    display: inline-block;
 }
 
 .navbar__link {
