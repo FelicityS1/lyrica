@@ -91,7 +91,8 @@
                                         <td><%= song.title %></td>
                                         <td><%= song.artist %></td>
                                         <td><%= song.submittedBy %></td>
-                                        <td><%= song.createdAt.toLocaleString() %></td>
+                                        <td><%= new Date(song.createdAt).toLocaleDateString('en-PH', { timeZone: 'Asia/Manila' }) %></td>
+
                                     </tr>
                                 <% }) %>
                             <% } else { %>
