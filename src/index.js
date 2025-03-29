@@ -89,6 +89,10 @@ app.get("/home", (req, res) => {
     const user = req.user || req.session.user;
     res.render("home", { users: user, activePage: "home" }); 
 });
+app.get("/about", (req, res) => {
+    const user = req.user || req.session.user;
+    res.render("about", { users: user, activePage: "about" }); 
+    });
 app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
     res.render("admin-promo"); // Only accessible by admins

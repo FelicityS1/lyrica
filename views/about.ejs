@@ -42,21 +42,21 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item mx-5">
-                            <a class="nav-link active" aria-current="page" href="home">HOME</a>
+                    <ul class="navbar">
+                        <li class="<%= activePage === 'home' ? 'active' : '' %>">
+                            <a href="/home">HOME</a>
                         </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" href="about.html">ABOUT</a>
+                        <li class="<%= activePage === 'feedback' ? 'active' : '' %>">
+                            <a href="/feedback">FEEDBACK</a>
                         </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" href="/feedback">FEEDBACK</a>
+                        <li class="<%= activePage === 'about' ? 'active' : '' %>">
+                            <a href="/about">ABOUT</a>
                         </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" href="/addsongs">ADD SONGS</a>
+                        <li class="<%= activePage === 'addsongs' ? 'active' : '' %>">
+                            <a href="/addsongs">ADD SONGS</a>
                         </li>
-                        <li class="nav-item mx-5">
-                            <a class="nav-link" href="/musicfeed">MUSIC FEED</a>
+                        <li class="<%= activePage === 'musicfeed' ? 'active' : '' %>">
+                            <a href="/musicfeed">MUSIC FEED</a>
                         </li>
                     </ul>
 
