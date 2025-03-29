@@ -328,7 +328,7 @@ app.get("/admin-musicfeed", isAdmin, async (req, res) => {
     try {
         const user = req.user || req.session.user;
         const songList = await songs.find({ status: { $ne: "deleted" } });
-        res.render("musicfeed", { 
+        res.render("admin-musicfeed", { 
             users: user,
             songs: songList,
             activePage: "admin-musicfeed" 
