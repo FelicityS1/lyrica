@@ -932,7 +932,7 @@ font-family: 'Poppins', sans-serif;
 
 /* Header Styling */
 .table__section h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 15px;
     color: #000;
@@ -977,11 +977,12 @@ font-family: 'Poppins', sans-serif;
 
 /* Table Body Cells */
 .table-custom tbody td {
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 20px;
+    border: 2px solid #ddd;
     text-align: center;
+    background-color: white;
     word-break: break-word; 
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .table-custom th, .table-custom td {
