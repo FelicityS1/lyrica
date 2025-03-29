@@ -102,6 +102,27 @@ p {
     margin: 0; 
 }
 
+.navbar li.active a {
+    color: #FF69B4;
+    font-weight: 700;
+    position: relative;
+}
+
+.navbar li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #FF69B4, #B18FCF);
+    border-radius: 3px;
+}
+
+
+.navbar li:not(.active) a:hover {
+    color: #cd96cdc5;
+}
 .navbar__link:hover {
     color: #cd96cdc5;  
 }
