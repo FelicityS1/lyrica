@@ -976,30 +976,109 @@ font-family: 'Poppins', sans-serif;
 
 /* Admin Header */
 .admin-header {
-    background: #1f1f1f; /* Darker than the user panel */
+    height: 10%;
+    background: linear-gradient(to right, #FF69B4, #B18FCF);
+    position: relative;
     color: white;
-    padding: 15px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 4px solid #ffcc00; /* Accent color for admin */
+    justify-content: space-between;
+    padding: 0 2%;
 }
 
 .admin-header__title h1 {
-    font-size: 28px;
+    margin: 0 2%;
+    font-size: 3vw;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.admin-header__user-section {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.admin-header__welcome {
+    font-size: 1vw;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin-right: 1vw;
 }
 
 .admin-header__logout {
-    color: #ffcc00;
-    text-decoration: none;
-    font-weight: bold;
+    background: none;
+    border: none;
+    font-size: 1vw;
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5vw 1vw;
     transition: color 0.3s ease;
 }
 
 .admin-header__logout:hover {
-    color: white;
+    color: #ffcccc;
 }
+
+.admin-navbar {
+    height: 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #f8f9fa;
+}
+
+.admin-navbar li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.admin-navbar li a {
+    text-decoration: none;
+    color: #551470;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 5px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+/* Active link styling */
+.admin-navbar li.active a {
+    color: #FF69B4;
+    font-weight: 700;
+    position: relative;
+}
+
+/* Underline effect for active page */
+.admin-navbar li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #FF69B4, #B18FCF);
+    border-radius: 3px;
+}
+
+/* Hover effect */
+.admin-navbar li a:hover {
+    color: #4a0e4ae0;
+}
+
 
 /* Admin Dashboard Styling */
 .table__section {
