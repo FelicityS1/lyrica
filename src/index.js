@@ -308,6 +308,7 @@ app.post("/deletesong/:id", async (req, res) => {
 });
 app.get("/admin-home", isAdmin, async (req, res) => {
     try {
+        const user = req.user || req.session.user;
         const newSongs = await songs.find({ status: "pending" });
         const modifiedSongs = await songs.find({ status: "modified" });
         const deletedSongs = await songs.find({ status: "deleted" });
@@ -316,7 +317,7 @@ app.get("/admin-home", isAdmin, async (req, res) => {
         console.log("Fetched modifiedSongs:", modifiedSongs);
         console.log("Fetched deletedSongs:", deletedSongs);
 
-        res.render("admin-home", { newSongs, modifiedSongs, deletedSongs });
+        res.render("admin-home", { newSongs, modifiedSongs, deletedSongs, users: user, activePage: "admin-home" });
     } catch (error) {
         console.error("Error fetching songs:", error);
         res.status(500).send("Internal Server Error");
