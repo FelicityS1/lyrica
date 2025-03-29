@@ -1131,7 +1131,8 @@ font-family: 'Poppins', sans-serif;
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 10;
+    z-index: 100;
+    height: 50px; 
 }
 
 /* Table Header Cells */
@@ -1139,32 +1140,28 @@ font-family: 'Poppins', sans-serif;
     text-align: center;
     vertical-align: middle;
     padding: 12px;
-    font-weight: bold;
-    background: linear-gradient(to right, #ff7eb3, #b88de6);
-    color: rgb(0, 0, 0);
+    background: #000;
+    color: rgb(255, 255, 255);
     border-bottom: 2px solid #ddd;
 }
 
 /* Table Body Cells */
-.table-custom td {
-    text-align: center;
-    vertical-align: middle;
+.table-custom tbody td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fdfdfd;
 }
 
 /* Prevent Overlapping */
-.table-custom th, .table-custom td {
-    white-space: nowrap; 
+.table-custom th {
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Optional: Improve Readability */
-.table-custom tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
+.table-custom tbody tr:first-child td {
+    padding-top: 15px;
 }
-
-
 
 .btn-sm {
     padding: 5px 10px;
