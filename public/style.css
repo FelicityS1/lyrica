@@ -87,7 +87,6 @@ p {
     align-items: center;
     gap: 5%; 
     list-style: none;
-    display: flex;
 }
 
 .navbar__link {
