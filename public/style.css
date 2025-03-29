@@ -1103,28 +1103,65 @@ font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
 }
 
+/* Header Styling */
 .table__section h2 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 15px;
+    color: #000;
 }
 
-.table-custom th, .table-custom td {
-    text-align: center;
-    vertical-align: middle;
-}
-
+/* Table Container: Prevents Overflow */
 .table__container {
     max-height: 300px;
-    overflow-y: auto;
+    overflow-y: auto;  /* Enables scrolling */
+    overflow-x: auto;
     border: 1px solid #ddd;
 }
 
+/* Table Styling */
+.table-custom {
+    width: 100%;
+    border-collapse: separate; /* Prevents merging */
+    border-spacing: 0; /* Removes unnecessary spacing */
+}
+
+/* Table Header */
 .table-custom thead {
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 10;
+}
+
+/* Table Header Cells */
+.table-custom th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff7eb3, #b88de6);
+    color: rgb(0, 0, 0);
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table Body Cells */
+.table-custom td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fdfdfd;
+}
+
+/* Prevent Overlapping */
+.table-custom th, .table-custom td {
+    white-space: nowrap; 
+}
+
+/* Optional: Improve Readability */
+.table-custom tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
 }
 
 
