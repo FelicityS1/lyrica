@@ -323,6 +323,22 @@ app.get("/admin-home", isAdmin, async (req, res) => {
     }
 });
 
+app.get("/admin-musicfeed", isAdmin, async (req, res) => {
+    try {
+        const user = req.user || req.session.user;
+        const songList = await songs.find({ status: { $ne: "deleted" } });
+        res.render("musicfeed", { 
+            users: user,
+            songs: songList,
+            activePage: "admin-musicfeed" 
+        });
+    } catch (error) {
+        console.error("Error fetching songs:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
 
 // Server Start
 const port = 5000;

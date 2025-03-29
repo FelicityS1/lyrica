@@ -23,8 +23,15 @@
         <div class="admin-header__title">
             <h1>LYRICA - ADMIN PANEL</h1>
         </div>
-        <a href="/logout" class="admin-header__logout">Logout</a>
-    </div>
+            <% if (users && users.name) { %>
+                <div class="header__user-section">
+                    <span class="header__welcome">Welcome, <%= users.name %>!</span>
+                    <a href="/logout" class="header__logout">Logout</a>
+                </div>
+            <% } else { %>
+                <a href="/login" class="header__logout">Login</a>
+            <% } %>
+        </div>
 
 
         <!-- Navigation Bar -->
