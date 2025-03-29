@@ -44,24 +44,23 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar">
-                        <li class="<%= activePage === 'home' ? 'active' : '' %>">
-                            <a href="/home">Home</a>
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item mx-5">
+                            <a class="nav-link active" aria-current="page" href="/home">HOME</a>
                         </li>
-                        <li class="<%= activePage === 'feedback' ? 'active' : '' %>">
-                            <a href="/feedback">Feedback</a>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="about.html">ABOUT</a>
                         </li>
-                        <li class="<%= activePage === 'about' ? 'active' : '' %>">
-                            <a href="/about">About</a>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="/feedback">FEEDBACK</a>
                         </li>
-                        <li class="<%= activePage === 'addsongs' ? 'active' : '' %>">
-                            <a href="/addsongs">Add Songs</a>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="/addsongs">ADD SONGS</a>
                         </li>
-                        <li class="<%= activePage === 'musicfeed' ? 'active' : '' %>">
-                            <a href="/musicfeed">Music Feed</a>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="/musicfeed">MUSIC FEED</a>
                         </li>
                     </ul>
-                    
 
                     <form id="searchForm" class="d-flex">
                         <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
