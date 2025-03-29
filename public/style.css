@@ -836,6 +836,8 @@ font-family: 'Poppins', sans-serif;
     color: #666;  /* Subtle color */
     margin-top: 3px;
     font-family: 'Inter', sans-serif;
+    text-align: left;
+   
 }
 
 .button-group {
