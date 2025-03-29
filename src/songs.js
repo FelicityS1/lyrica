@@ -38,6 +38,8 @@ const SongsSchema = new mongoose.Schema({
     modifiedBy: String, // Store user who modified the song
     deletedBy: String,// Store user who deleted the song
     createdAt: String, // Store the date when the song was created
+    dateModified: String,
+    
 }, { timestamps: true });
 
 //collection Part

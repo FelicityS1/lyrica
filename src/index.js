@@ -280,6 +280,7 @@ app.post("/updatesong/:id", async (req, res) => {
 
         song.status = "modified";
         song.modifiedBy = req.user ? req.user.name : "Unknown";
+        song.dateModified = new Date(); // Ensure this field exists
         await song.save();
 
         res.redirect('/musicfeed');
