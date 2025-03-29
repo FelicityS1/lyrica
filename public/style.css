@@ -104,12 +104,8 @@ p {
     margin: 0; 
 }
 
-.navbar li {
-    padding: 10px 15px;
-}
-
 .navbar li.active {
-    background-color: #4CAF50; /* Highlight color */
+    background-color: #a3a1a158; /* Highlight color */
     color: white;
     font-weight: bold;
 }
