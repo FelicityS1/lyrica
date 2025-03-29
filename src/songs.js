@@ -32,11 +32,12 @@ const SongsSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["pending", "approved", "modified", "deleted"],
+        enum: ["active", "approved", "modified", "deleted"],
         default: "approved"
     },
     modifiedBy: String, // Store user who modified the song
-    deletedBy: String // Store user who deleted the song
+    deletedBy: String,// Store user who deleted the song
+    createdAt: String, // Store the date when the song was created
 }, { timestamps: true });
 
 //collection Part

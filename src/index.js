@@ -214,7 +214,8 @@ app.post("/addsongs", async (req, res) => {
             artist: req.body.artist,
             lyrics: req.body.lyrics,
             youtube: req.body.youtube,
-            submittedBy: req.user ? req.user.username || req.user.name : "Anonymous"
+            submittedBy: req.user ? req.user.username || req.user.name : "Anonymous",
+            status: "active"
         });
         await newSong.save();
         res.redirect("/musicfeed");
@@ -309,7 +310,7 @@ app.post("/deletesong/:id", async (req, res) => {
 app.get("/admin-home", isAdmin, async (req, res) => {
     try {
         const user = req.user || req.session.user;
-        const newSongs = await songs.find({ status: "pending" });
+        const newSongs = await songs.find({ status: "active" });
         const modifiedSongs = await songs.find({ status: "modified" });
         const deletedSongs = await songs.find({ status: "deleted" });
 
@@ -339,14 +340,6 @@ app.get("/admin-musicfeed", isAdmin, async (req, res) => {
     }
 });
 
-app.get("/newsongs", async (req, res) => {
-    try {
-        const newSongs = await songs.find().sort({ createdAt: -1 }).limit(10); // Get the latest 10 songs
-        res.render("newsongs", { songs: newSongs });
-    } catch (error) {
-        res.status(500).send("Error fetching new songs");
-    }
-});
 
 
 // Server Start

@@ -82,7 +82,6 @@
                                 <th>Artist</th>
                                 <th>Submitted By</th>
                                 <th>Date Submitted</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,10 +92,6 @@
                                         <td><%= song.artist %></td>
                                         <td><%= song.submittedBy %></td>
                                         <td><%= song.createdAt.toLocaleString() %></td>
-                                        <td>
-                                            <a href="/approve/<%= song._id %>" class="btn btn-success btn-sm">Approve</a>
-                                            <a href="/delete/<%= song._id %>" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
                                     </tr>
                                 <% }) %>
                             <% } else { %>
