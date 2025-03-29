@@ -100,10 +100,6 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.navbar__link {
-    margin: 0; 
-}
-
 .navbar li.active {
     background-color: #a3a1a158; /* Highlight color */
     color: white;
