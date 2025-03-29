@@ -71,104 +71,103 @@
             <h1>Admin Dashboard</h1>
             <div class="separator"></div>
 
-            <!-- Newly Submitted Songs -->
-            <div class="table__section">
-                <h2>Newly Submitted Songs</h2>
-                <div class="table__container table-responsive">
-                    <table class="table table-hover table-bordered table-custom">
-                        <thead>
-                            <tr>
-                                <th>Song Title</th>
-                                <th>Artist</th>
-                                <th>Submitted By</th>
-                                <th>Date Submitted</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if (newSongs && newSongs.length > 0) { %>
-                                <% newSongs.forEach(song => { %>
-                                    <tr>
-                                        <td><%= song.title %></td>
-                                        <td><%= song.artist %></td>
-                                        <td><%= song.submittedBy %></td>
-                                        <td><%= new Date(song.createdAt).toLocaleDateString('en-PH', { timeZone: 'Asia/Manila' }) %></td>
-
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <tr><td colspan="5">No new songs submitted.</td></tr>
-                            <% } %>
-                        </tbody>
-                        
-                    </table>
-                </div>
+        <!-- Newly Submitted Songs -->
+        <div class="table__section">
+            <h2>Newly Submitted Songs</h2>
+            <div class="table__container table-responsive">
+                <table class="table table-hover table-bordered table-custom">
+                    <thead>
+                        <tr>
+                            <th>Song Title</th>
+                            <th>Artist</th>
+                            <th>Submitted By</th>
+                            <th>Date Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (newSongs && newSongs.length > 0) { %>
+                            <% newSongs.forEach(song => { %>
+                                <tr>
+                                    <td><%= song.title %></td>
+                                    <td><%= song.artist %></td>
+                                    <td><%= song.submittedBy %></td>
+                                    <td><%= new Date(song.createdAt).toLocaleString('en-US', { timeZone: 'Asia/Manila', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr><td colspan="4">No new songs submitted.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
+        </div>
 
-                                 <!-- Recently Modified Songs -->
-            <div class="table__section">
-                <h2>Recently Modified Songs</h2>
-                <div class="table__container table-responsive">
-                    <table class="table table-hover table-bordered table-custom">
-                        <thead>
-                            <tr>
-                                <th>Song Title</th>
-                                <th>Artist</th>
-                                <th>Modified By</th>
-                                <th>User/Admin</th>
-                                <th>Date Modified</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if (modifiedSongs && modifiedSongs.length > 0) { %>
-                                <% modifiedSongs.forEach(song => { %>
-                                    <tr>
-                                        <td><%= song.title %></td>
-                                        <td><%= song.artist %></td>
-                                        <td><%= song.modifiedBy %></td>
-                                        <td><%= song.modifiedByRole %></td> <!-- User or Admin -->
-                                        <td><%= song.dateModified %></td>
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <tr><td colspan="5">No recent modifications.</td></tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Recently Modified Songs -->
+        <div class="table__section">
+            <h2>Recently Modified Songs</h2>
+            <div class="table__container table-responsive">
+                <table class="table table-hover table-bordered table-custom">
+                    <thead>
+                        <tr>
+                            <th>Song Title</th>
+                            <th>Artist</th>
+                            <th>Modified By</th>
+                            <th>User/Admin</th>
+                            <th>Date Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (modifiedSongs && modifiedSongs.length > 0) { %>
+                            <% modifiedSongs.forEach(song => { %>
+                                <tr>
+                                    <td><%= song.title %></td>
+                                    <td><%= song.artist %></td>
+                                    <td><%= song.modifiedBy %></td>
+                                    <td><%= song.modifiedByRole %></td>
+                                    <td><%= new Date(song.dateModified).toLocaleString('en-US', { timeZone: 'Asia/Manila', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr><td colspan="5">No recent modifications.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
+        </div>
 
-            <!-- Recently Deleted Songs -->
-            <div class="table__section">
-                <h2>Recently Deleted Songs</h2>
-                <div class="table__container table-responsive">
-                    <table class="table table-hover table-bordered table-custom">
-                        <thead>
-                            <tr>
-                                <th>Song Title</th>
-                                <th>Artist</th>
-                                <th>Deleted By</th>
-                                <th>User/Admin</th>
-                                <th>Date Deleted</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if (deletedSongs && deletedSongs.length > 0) { %>
-                                <% deletedSongs.forEach(song => { %>
-                                    <tr>
-                                        <td><%= song.title %></td>
-                                        <td><%= song.artist %></td>
-                                        <td><%= song.deletedBy %></td>
-                                        <td><%= song.deletedByRole %></td> <!-- User or Admin -->
-                                        <td><%= song.dateDeleted %></td>
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <tr><td colspan="5">No recent deletions.</td></tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Recently Deleted Songs -->
+        <div class="table__section">
+            <h2>Recently Deleted Songs</h2>
+            <div class="table__container table-responsive">
+                <table class="table table-hover table-bordered table-custom">
+                    <thead>
+                        <tr>
+                            <th>Song Title</th>
+                            <th>Artist</th>
+                            <th>Deleted By</th>
+                            <th>User/Admin</th>
+                            <th>Date Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (deletedSongs && deletedSongs.length > 0) { %>
+                            <% deletedSongs.forEach(song => { %>
+                                <tr>
+                                    <td><%= song.title %></td>
+                                    <td><%= song.artist %></td>
+                                    <td><%= song.deletedBy %></td>
+                                    <td><%= song.deletedByRole %></td>
+                                    <td><%= new Date(song.dateDeleted).toLocaleString('en-US', { timeZone: 'Asia/Manila', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr><td colspan="5">No recent deletions.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
+        </div>
+
 
         <!-- Footer Section -->
         <footer class="footer">

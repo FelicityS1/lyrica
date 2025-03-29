@@ -307,14 +307,15 @@ app.post("/deletesong/:id", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
 app.get("/admin-home", isAdmin, async (req, res) => {
     try {
         const user = req.user || req.session.user;
 
-        // Fetch only the 5 most recent songs for each category
-        const newSongs = await songs.find({ status: "active" }).sort({ createdAt: -1 }).limit(5);
-        const modifiedSongs = await songs.find({ status: "modified" }).sort({ dateModified: -1 }).limit(5);
-        const deletedSongs = await songs.find({ status: "deleted" }).sort({ dateDeleted: -1 }).limit(5);
+        // Fetch all songs for each category (sorted by latest)
+        const newSongs = await songs.find({ status: "active" }).sort({ createdAt: -1 });
+        const modifiedSongs = await songs.find({ status: "modified" }).sort({ dateModified: -1 });
+        const deletedSongs = await songs.find({ status: "deleted" }).sort({ dateDeleted: -1 });
 
         console.log("Fetched newSongs:", newSongs);
         console.log("Fetched modifiedSongs:", modifiedSongs);
@@ -326,7 +327,6 @@ app.get("/admin-home", isAdmin, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-
 
 app.get("/admin-musicfeed", isAdmin, async (req, res) => {
     try {

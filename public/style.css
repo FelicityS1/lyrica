@@ -1114,6 +1114,21 @@ font-family: 'Poppins', sans-serif;
     vertical-align: middle;
 }
 
+.table__container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+.table-custom thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+}
+
+
+
 .btn-sm {
     padding: 5px 10px;
     font-size: 14px;
