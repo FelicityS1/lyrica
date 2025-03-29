@@ -83,11 +83,11 @@ app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 app.get("/addsongs", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("addsongs", { users: user }); 
+    res.render("addsongs", { users: user, activePage: "addsongs" }); 
     });
 app.get("/home", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("home", { users: user }); 
+    res.render("home", { users: user, activePage: "home" }); 
 });
 app.get("/loading", (req, res) => res.render("login"));
 app.get("/admin-promo", isAdmin, (req, res) => {
@@ -95,11 +95,11 @@ app.get("/admin-promo", isAdmin, (req, res) => {
 });
 app.get("/feedback", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("feedback", { users: user }); 
+    res.render("feedback", { users: user, activePage: "feedback" }); 
 });
 app.get("/about", (req, res) => {
     const user = req.user || req.session.user;
-    res.render("/about", { users: user }); 
+    res.render("/about", { users: user, activePage: "about" }); 
 });
 // Google OAuth Login
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -226,7 +226,8 @@ app.get("/musicfeed", async (req, res) => {
         const songList = await songs.find({ status: { $ne: "deleted" } });
         res.render("musicfeed", { 
             users: user,
-            songs: songList  
+            songs: songList,
+            activePage: "musicfeed"  
         }); 
     } catch (error) {
         console.error("Error fetching songs:", error);

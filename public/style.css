@@ -86,6 +86,8 @@ p {
     justify-content: center; 
     align-items: center;
     gap: 5%; 
+    list-style: none;
+    display: flex;
 }
 
 .navbar__link {
@@ -100,6 +102,16 @@ p {
 
 .navbar__link {
     margin: 0; 
+}
+
+.navbar li {
+    padding: 10px 15px;
+}
+
+.navbar li.active {
+    background-color: #4CAF50; /* Highlight color */
+    color: white;
+    font-weight: bold;
 }
 
 .navbar__link:hover {
