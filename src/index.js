@@ -272,23 +272,28 @@ app.post("/updatesong/:id", async (req, res) => {
         const song = await songs.findById(req.params.id);
         if (!song) return res.status(404).send("Song not found");
 
+        // Check if the logged-in user is the one who submitted the song
+        if (!req.user || song.submittedBy !== req.user.name) {
+            return res.status(403).send("You can only edit songs you submitted.");
+        }
+
         // Update song details
         song.title = req.body.title;
         song.artist = req.body.artist;
         song.lyrics = req.body.lyrics;
         song.youtube = req.body.youtube;
-
         song.status = "modified";
-        song.modifiedBy = req.user ? req.user.name : "Unknown";
-        song.dateModified = new Date(); // Ensure this field exists
-        await song.save();
+        song.modifiedBy = req.user.name;
+        song.dateModified = new Date();
 
+        await song.save();
         res.redirect('/musicfeed');
     } catch (error) {
         console.error("Error updating song:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 // Delete Song
 app.post("/deletesong/:id", async (req, res) => {
@@ -298,8 +303,13 @@ app.post("/deletesong/:id", async (req, res) => {
         const song = await songs.findById(req.params.id);
         if (!song) return res.status(404).send("Song not found");
 
+        // Check if the logged-in user is the one who submitted the song
+        if (!req.user || song.submittedBy !== req.user.name) {
+            return res.status(403).send("You can only delete songs you submitted.");
+        }
+
         song.status = "deleted";
-        song.deletedBy = req.user ? req.user.name : "Unknown";
+        song.deletedBy = req.user.name;
         await song.save();
 
         res.redirect("/musicfeed");
