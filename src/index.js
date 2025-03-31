@@ -86,19 +86,21 @@ app.get("/addsongs", (req, res) => {
     res.render("addsongs", { users: user, activePage: "addsongs" }); 
     });
 
-app.get("/home", async (req, res) => {
-    try {
-         const user = req.user || req.session.user;
+    app.get("/home", async (req, res) => {
+        try {
+            const user = req.user || req.session.user;
+            const randomSongs = await songs.aggregate([
+                { $match: { status: { $ne: "deleted" } } }, 
+                { $sample: { size: 5 } } // Fetch 5 random songs
+            ]);
     
-        // Fetch random 5 songs from the database
-         const randomSongs = await songs.aggregate([{ $sample: { size: 5 } }]);
-    
-         res.render("home", { users: user, activePage: "home", randomSongs });
-    } catch (error) {
-         console.error("Error fetching random songs:", error);
-         res.status(500).send("Server Error");
+            res.render("home", { users: user, activePage: "home", randomSongs });
+        } catch (error) {
+            console.error("Error fetching random songs:", error);
+            res.status(500).send("Server Error");
         }
     });
+    
 
 app.get("/about", (req, res) => {
     const user = req.user || req.session.user;
