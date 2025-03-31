@@ -994,40 +994,47 @@ font-family: 'Poppins', sans-serif;
 
 /* Styling for Home Page Songs Section */
 .song-container {
-    background: #f8f9fa; 
+    background: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+    text-align: center; /* Center text inside */
 }
 
+/* Center the list */
 .song-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
-}
-
-.song-item {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+}
+
+/* Song card styling */
+.song-item {
+    background: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    width: 80%; 
+    max-width: 500px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center everything inside */
+    gap: 8px;
     transition: transform 0.2s ease-in-out;
 }
 
+/* Remove hover box-shadow effect */
 .song-item:hover {
     transform: scale(1.02);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
-
-/* Style for song titles */
+/* Song title styling */
 .song-item h3 {
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 22px; 
     font-weight: bold;
     margin: 0;
     color: #333;
@@ -1035,6 +1042,7 @@ font-family: 'Poppins', sans-serif;
 
 /* Style for the "View Details" link */
 .song-item a {
+    font-size: 16px;
     text-decoration: none;
     color: #c54384;
     font-weight: bold;
