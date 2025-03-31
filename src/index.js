@@ -220,6 +220,30 @@ app.get('/logout', (req, res) => {
     });
 });
 
+app.get("/search", async (req, res) => {
+    try {
+        const query = req.query.q;
+        if (!query) {
+            return res.status(400).json({ error: "Search query is required" });
+        }
+
+        // Search for songs matching the title, artist, or lyrics
+        const searchResults = await songs.find({
+            $or: [
+                { title: { $regex: query, $options: "i" } }, 
+                { artist: { $regex: query, $options: "i" } },
+                { lyrics: { $regex: query, $options: "i" } } 
+            ],
+            status: { $ne: "deleted" } // Exclude deleted songs
+        });
+
+        res.json(searchResults); // Return results as JSON
+    } catch (error) {
+        console.error("Search error:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 app.post("/addsongs", async (req, res) => {
     try {
         const newSong = new songs({
