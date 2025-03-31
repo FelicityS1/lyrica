@@ -225,6 +225,11 @@ p {
     z-index: 1000; 
 }
 
+.search-result {
+    color: black !important; 
+    text-decoration: none; /* Removes underline */
+}
+
 
 .content {
     background-color: #020202;;
