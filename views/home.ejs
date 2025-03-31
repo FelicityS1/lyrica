@@ -74,21 +74,23 @@
         <!-- Main content section -->
         <div class="content">
             <h1>Suggested Songs</h1>
-                <div class="song-container">
-                    <% if (randomSongs && randomSongs.length > 0) { %>
-                        <ul class="song-list">
-                            <% randomSongs.forEach(song => { %>
-                                <li class="song-item">
-                                    <h3><%= song.title %> - <%= song.artist %></h3>
-                                    <a href="<%= song.youtube %>" target="_blank">Listen on YouTube</a>
-                                </li>
-                            <% }) %>
-                        </ul>
-                    <% } else { %>
-                        <p>No song suggestions available at the moment.</p>
-                    <% } %>
-                </div>
+            <div class="song-container">
+                <% if (randomSongs && randomSongs.length > 0) { %>
+                    <ul class="song-list">
+                        <% randomSongs.forEach(song => { %>
+                            <li class="song-item">
+                                <h3><%= song.title %> - <%= song.artist %></h3>
+                                <!-- Redirect to songdetails.ejs -->
+                                <a href="/songdetails/<%= song._id %>">View Details</a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No song suggestions available at the moment.</p>
+                <% } %>
+            </div>
         </div>
+        
 
 
         <!-- Footer Section -->

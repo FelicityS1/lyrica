@@ -797,7 +797,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .back-button:hover {
-    background: #0056b3;
+    background: #c54384;
 }
 
 
@@ -994,64 +994,54 @@ font-family: 'Poppins', sans-serif;
 
 /* Styling for Home Page Songs Section */
 .song-container {
-    margin-top: 20px;
+    background: #f8f9fa; 
     padding: 20px;
-    background: #f8f9fa;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.song-container h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 15px;
-    color: #333;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .song-list {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    margin: 0;
 }
 
 .song-item {
-    background: #fff;
+    background: white;
     padding: 15px;
+    margin: 10px 0;
     border-radius: 8px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.song-item h3 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #222;
-}
-
-.song-item a {
-    display: inline-block;
-    padding: 8px 12px;
-    background: #ff4757;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 500;
-    transition: background 0.2s ease-in-out;
-}
-
-.song-item a:hover {
-    background: #e84118;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: transform 0.2s ease-in-out;
 }
 
 .song-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Style for song titles */
+.song-item h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+/* Style for the "View Details" link */
+.song-item a {
+    text-decoration: none;
+    color: #c54384;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.song-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }
