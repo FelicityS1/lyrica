@@ -11,17 +11,35 @@ p {
 }
 
 .header__search-bar {
-    position: absolute;  
-    right: 5%; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
 
-
 .header__search-bar input {
-    padding: 2%; 
-    font-family: 'Poppins';
-    font-size: 0.80vw; 
-    border-radius: 10px; 
-    border: 1px solid #ccc; 
+    padding: 8px 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Responsive Search Bar */
+@media (max-width: 768px) {
+    .header__search-bar input {
+        width: 150px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__search-bar input {
+        width: 120px;
+        font-size: 0.8rem;
+    }
 }
 
 .header {
