@@ -266,6 +266,23 @@ app.get("/song/:id", async (req, res) => {
     }
 });
 
+app.get("/songdetails/:id", async (req, res) => {
+    try {
+        const songId = req.params.id;
+        const song = await songs.findById(songId);
+
+        if (!song) {
+            return res.status(404).send("Song not found");
+        }
+
+        res.render("songdetails", { song });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+});
+
+
 // Update Song
 app.get("/updatesong/:id", async (req, res) => {
     try {
