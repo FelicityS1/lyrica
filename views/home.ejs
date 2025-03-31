@@ -73,76 +73,23 @@
 
         <!-- Main content section -->
         <div class="content">
-            <h1>TOP SONGS</h1>
-            <div class="separator"></div>
-
-            <!-- Table of top songs -->
-            <div class="table__container table-responsive">
-                <table class="table table-hover table-bordered table-custom">
-                    <thead class="thead-light">
-                        <tr class="table__row">
-                            <th class="table__header">Rank</th>
-                            <th class="table__header"></th> <!-- Empty header for thumbnail column -->
-                            <th class="table__header">Song Title</th>
-                            <th class="table__header">Artist</th>
-                            <th class="table__header">Views</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Sample content rows -->
-                        <tr class="table__row">
-                            <td class="table__cell">1</td>
-                            <td class="table__cell"><img
-                                    src="https://emomiu.jp/wp/wp-content/uploads/2022/08/dish_replay1.jpg"
-                                    alt="Neko (Cat)" class="thumbnail"></td>
-                            <td class="table__cell table__cell--song-title"><a href="neko.html"
-                                    class="content__link">Neko (Cat)</a></td>
-                            <td class="table__cell table__cell--song-artist">DISH//</td>
-                            <td class="table__cell">3.2B</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="table__cell">2</td>
-                            <td class="table__cell"><img
-                                    src="https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/0f/a5/98/0fa598d9-bf7c-bbba-e29c-b7fdc1270316/886447819074.jpg/1200x1200bf-60.jpg"
-                                    alt="Dancing With Your Ghost" class="thumbnail"></td>
-                            <td class="table__cell table__cell--song-title"><a href="DancingWithYourGhost.html"
-                                    class="content__link">Dancing With Your Ghost</a></td>
-                            <td class="table__cell table__cell--song-artist">Sasha Alex Sloan</td>
-                            <td class="table__cell">2.8B</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="table__cell">3</td>
-                            <td class="table__cell"><img
-                                    src="https://www.game-ost.ru/static/covers_soundtracks/4/7/473845_97898.jpg"
-                                    alt="Vandalize" class="thumbnail"></td>
-                            <td class="table__cell table__cell--song-title"><a href="vandalize.html"
-                                    class="content__link">Vandalize</a></td>
-                            <td class="table__cell table__cell--song-artist">One OK Rock</td>
-                            <td class="table__cell">2.6B</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="table__cell">4</td>
-                            <td class="table__cell"><img src="https://i.ytimg.com/vi/sARtzVKoHM0/maxresdefault.jpg"
-                                    alt="Out of Love" class="thumbnail"></td>
-                            <td class="table__cell table__cell--song-title"><a href="OutofLove.html"
-                                    class="content__link">Out of Love</a></td>
-                            <td class="table__cell table__cell--song-artist">Alessia Cara</td>
-                            <td class="table__cell">5.5B</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="table__cell">5</td>
-                            <td class="table__cell"><img
-                                    src="https://th.bing.com/th/id/OIP.wverTkhTq734ap0iw-KfbwHaEL?rs=1&pid=ImgDetMain"
-                                    alt="Speak the Name/Call the Name" class="thumbnail"></td>
-                            <td class="table__cell table__cell--song-title"><a href="SpeaktheName.html"
-                                    class="content__link">Speak the Name/Call the Name</a></td>
-                            <td class="table__cell table__cell--song-artist">Indiana Bible College</td>
-                            <td class="table__cell">2.1B</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h1>Suggested Songs</h1>
+                <div class="song-container">
+                    <% if (randomSongs && randomSongs.length > 0) { %>
+                        <ul class="song-list">
+                            <% randomSongs.forEach(song => { %>
+                                <li class="song-item">
+                                    <h3><%= song.title %> - <%= song.artist %></h3>
+                                    <a href="<%= song.youtube %>" target="_blank">Listen on YouTube</a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <p>No song suggestions available at the moment.</p>
+                    <% } %>
+                </div>
         </div>
+
 
         <!-- Footer Section -->
         <footer class="footer">

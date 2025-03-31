@@ -85,10 +85,29 @@ app.get("/addsongs", (req, res) => {
     const user = req.user || req.session.user;
     res.render("addsongs", { users: user, activePage: "addsongs" }); 
     });
-app.get("/home", (req, res) => {
-    const user = req.user || req.session.user;
-    res.render("home", { users: user, activePage: "home" }); 
-});
+
+   
+
+    app.get("/home", async (req, res) => {
+        try {
+            const user = req.user || req.session.user;
+    
+            // Fetch 3 random songs from the database
+            const randomSongs = await songs.aggregate([{ $sample: { size: 3 } }]);
+    
+            res.render("home", { 
+                users: user, 
+                activePage: "home",
+                randomSongs  // Pass the random songs to the view
+            }); 
+        } catch (error) {
+            console.error("Error fetching random songs:", error);
+            res.status(500).send("Server error");
+        }
+    });
+    
+
+
 app.get("/about", (req, res) => {
     const user = req.user || req.session.user;
     res.render("about", { users: user, activePage: "about" }); 
