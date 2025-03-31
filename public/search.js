@@ -1,20 +1,37 @@
-document.getElementById("searchInput").addEventListener("input", async function () {
-    const query = this.value.trim();
-    const resultsContainer = document.getElementById("searchResults");
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const searchResultsDiv = document.getElementById("searchResults");
 
-    if (query.length === 0) {
-        resultsContainer.innerHTML = ""; 
-        return;
-    }
+    searchForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const query = searchInput.value.trim();
 
-    try {
-        const response = await fetch(`/search?query=${encodeURIComponent(query)}`);
-        const results = await response.json();
+        if (!query) return;
 
-        resultsContainer.innerHTML = results
-            .map(song => `<div class="search-result">${song.title}</div>`)
-            .join("");
-    } catch (error) {
-        console.error("Error fetching search results:", error);
-    }
+        try {
+            const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
+            const results = await response.json();
+
+            // Clear previous results
+            searchResultsDiv.innerHTML = "";
+
+            if (results.length === 0) {
+                searchResultsDiv.innerHTML = "<p>No results found.</p>";
+                return;
+            }
+
+            // Display search results
+            results.forEach(song => {
+                const songElement = document.createElement("div");
+                songElement.innerHTML = `
+                    <a href="/song/${song._id}">${song.title} by ${song.artist}</a>
+                `;
+                searchResultsDiv.appendChild(songElement);
+            });
+        } catch (error) {
+            console.error("Error searching:", error);
+            searchResultsDiv.innerHTML = "<p>Error fetching results.</p>";
+        }
+    });
 });
